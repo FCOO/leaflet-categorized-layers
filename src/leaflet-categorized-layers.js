@@ -218,15 +218,34 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
 
     this._handlingClick = true;
 
+    var iAdded = null;
+    var obj;
     for (i = 0; i < inputsLen; i++) {
       input = inputs[i];
-      var obj = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId]
+      obj = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId]
       if (input.checked && !this._map.hasLayer(obj)) {
         this._map.addLayer(obj);
+        iAdded = i;
         this._map.fire('overlayadd');
       } else if (!input.checked && this._map.hasLayer(obj)) {
         this._map.removeLayer(obj);
         this._map.fire('overlayremove');
+      }
+    }
+    // Make sure that only one layer with the primadonna option is on stage
+    // at the same time
+    if (iAdded !== null) {
+      input = inputs[iAdded];
+      objA = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId]
+      if (objA.options.primadonna) {
+        for (i = 0; i < inputsLen; i++) {
+          input = inputs[i];
+          obj = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId]
+          if (obj !== objA && input.checked && this._map.hasLayer(obj) && obj.options.primadonna) {
+            input.checked = false; // Manually toggle checkbox
+            this._onInputClick(); // Manually call click handler
+          }
+        }
       }
     }
 
