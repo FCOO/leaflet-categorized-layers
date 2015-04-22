@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet control containing a home button</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+</head>
+<body>
+    <div id="map" style="width: 600px; height: 400px"></div>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script type="text/javascript" src="src/leaflet-categorized-layers.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/leaflet-categorized-layers-select.js" charset="UTF-8"></script>
+    <script>
+        var map = L.map('map').setView([56.5, 12.0], 5);
+        var openstreetmap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
+        })
+        openstreetmap.addTo(map);
+
+
+        var basemaps = {'Basemaps': {'OSM': openstreetmap}}
+        var layer11 = L.marker([55.5, 12.0])
+        var layer12 = L.marker([56.5, 12.0])
+        var layer13 = L.marker([57.5, 12.0])
+        var layer21 = L.marker([55.5, 11.0])
+        var layer22 = L.marker([55.5, 13.0])
+
+        var overlays = {
+            "Heading 1": {
+                "Layer 1.1": layer11,
+                "Layer 1.2": layer12,
+                "Layer 1.3": layer13
+            },
+            "Heading 2": {
+                "Layer 2.1": layer21,
+                "Layer 2.2": layer22
+            }
+        }
+        var options = {};
+        var layerControl = new L.Control.CategorizedLayers(basemaps, overlays, options);
+        map.addControl(layerControl);
+    </script>
+</body>
+</html>
