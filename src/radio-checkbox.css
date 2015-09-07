@@ -1,0 +1,329 @@
+/***********************************************************************************
+RADIO-CHECKBOX.SCSS
+Style for radio and checkbox input-eleemnts
+
+Based on
+CSS Checkbox Styles 
+by Kushagra Agarwal http://kushagra.me 
+on http://cssdeck.com
+http://cssdeck.com/labs/css-checkbox-styles
+
+Modyfied by Niels Holt/FCOO
+
+There are 9 different input-style:
+3 slides: className = sliderOne, slideTwo, slideThree
+2 round : className = roundedOne, roundedTwo
+4 square: className = squaredOne, squaredTwo, squaredThree, squaredFour
+
+Each style is defined by a class-name and the input is 'packed' like this
+<div class="theClassName">	
+	<input type="checkbox" value="None" id="idCheckBox" name="check" />
+	<label for="idCheckBox"></label>
+</div>
+'theClassName' defines the layout.
+Currently only roundedOne (for radio) and squaredOne (for checkbox)
+are used. They are renamed to 'input-radio' and 'input-checkbox' and modified in size
+***********************************************************************************/
+/***********************************************
+_IMPORT.SCSS
+Contains the @import for all sass-files to be included
+in each .scss file in the project
+************************************************/
+/*********************************************************************
+_USER-INTERFACE.SCSS
+Contains the common css and scss declarations, variable and functions
+***********************************************************************/
+/***********************************************
+Common mixin and function
+***********************************************/
+/******************************************
+Functions to work with lists
+eq. $list = name1 value1, name2, value2, name3, value3;
+**********************************************/
+/*******************************************************
+get-list-value returns the value cooresponding to
+$key in $list
+E.q.: `get-list-value($list, name2)` will return value2
+*********************************************************/
+/*************************************************************
+*************************************************************
+COLOR
+The color-name are the same as used in leaflet.js and by
+L.AwesomeMarkers etc.
+*************************************************************
+*************************************************************/
+/*************************************************************
+*************************************************************
+COLOR CONTRACT
+Taken from http://codepen.io/lunelson/pen/jENxwB
+*************************************************************
+*************************************************************/
+/*************************************************************
+*************************************************************
+ICONS
+To use the mixins regarding icons, the scss-file MUST provide 
+a list named "$icon-list" where each row has a icon-name and a char-code
+Eq.:
+	$icon-list: 
+		ok			"\ed6c",	
+		cancel	"\ed6a",	
+		close		"\ed6b"	
+	;
+
+and (optional) the name of the font-family:
+ $icon-font-family: 'icomoon';
+
+and the @font-face (perhaps generated via bourbon "@include font-face(icomoon, 'icomoon-1.5.1/icomoon');"
+	@font-face {
+		font-family: icomoon;
+	  src: url("icomoon-1.5.1/icomoon.eot?#iefix") format("embedded-opentype"), url("icomoon-1.5.1/icomoon.woff2") format("woff2"), url("icomoon-1.5.1/icomoon.woff") format("woff"), url("icomoon-1.5.1/icomoon.ttf") format("truetype"), url("icomoon-1.5.1/icomoon.svg#icomoon") format("svg");
+	}
+
+*************************************************************
+*************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\0000340}}
+.input-checkbox, .input-radio {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 0.75rem; /*0.8125rem;*/
+  height: 0.75rem; /*0.8125rem;*/
+  background-color: #fcfff4;
+  background-image: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background-image: linear-gradient(to bottom,#fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  box-shadow: inset 0 0.0625rem 0.0625rem white, 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.8);
+  cursor: default;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\0000353}}
+.input-checkbox input, .input-radio input {
+  position: absolute;
+  left: -9999px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\0000358}}
+.input-checkbox label, .input-radio label {
+  position: absolute;
+  left: 7.69231%;
+  top: 7.69231%;
+  width: 84.61538%;
+  height: 84.61538%;
+  background-color: #222;
+  background-image: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+  background-image: linear-gradient(to bottom,#222 0%, #45484d 100%);
+  box-shadow: inset 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.5), 0 0.0625rem 0 white;
+  cursor: pointer;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\0000371}}
+.input-checkbox label:after, .input-radio label:after {
+  position: absolute;
+  top: 9.09091%;
+  left: 9.09091%;
+  width: 81.81818%;
+  height: 81.81818%;
+  background-color: #00bf00;
+  background-image: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%);
+  background-image: linear-gradient(to bottom,#00bf00 0%, #009400 100%);
+  opacity: 0;
+  content: '';
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\0000384}}
+.input-checkbox label:hover::after, .input-radio label:hover::after {
+  opacity: 0.3;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\0000387}}
+.input-checkbox input:checked + label:after, .input-radio input:checked + label:after {
+  opacity: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\0000392}}
+.input-checkbox input.semi-selected:checked + label:after, .input-radio input.semi-selected:checked + label:after {
+  background-color: #bfbf00;
+  background-image: -webkit-linear-gradient(top, #bfbf00 0%, #949400 100%);
+  background-image: linear-gradient(to bottom,#bfbf00 0%, #949400 100%);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\0000399}}
+.input-radio {
+  border-radius: 3.125rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003102}}
+.input-radio label {
+  border-radius: 3.125rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003104}}
+.input-radio label:after {
+  border-radius: 3.125rem;
+}
+
+/*************************************************************
+multi-input-box is a div containing 1-4 checkbox- or radio-input
+The <input> are only visible when the div is hover or clicked
+The <input> are dispalyed as 1x1, 1x2, 2x1, 1x3, 3x1 or 2x2 given by the class for the div
+<div class="multi-input-box dim-3x1">
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+</div>
+*************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003125}}
+.multi-input-box.dim-1x1 [class^="input-"]:nth-child(1n+2) {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003126}}
+.multi-input-box.dim-2x1 [class^="input-"]:nth-child(1n+3), .multi-input-box.dim-1x2 [class^="input-"]:nth-child(1n+3) {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003127}}
+.multi-input-box.dim-3x1 [class^="input-"]:nth-child(1n+4), .multi-input-box.dim-1x3 [class^="input-"]:nth-child(1n+4) {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003132}}
+.multi-input-box:not(.dim-1x1) {
+  display: flex;
+  width: 0.8125rem;
+  height: 0.8125rem;
+  margin: 0;
+  background-color: #fcfff4;
+  background-image: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background-image: linear-gradient(to bottom,#fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  box-shadow: inset 0 0.0625rem 0.0625rem white, 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.8);
+  -webkit-transition: width 0.1s, height 0.1s, margin 0.1s;
+  -moz-transition: width 0.1s, height 0.1s, margin 0.1s;
+  -o-transition: width 0.1s, height 0.1s, margin 0.1s;
+  transition: width 0.1s, height 0.1s, margin 0.1s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003137}}
+.multi-input-box:not(.dim-1x1).dim-2x1, .multi-input-box:not(.dim-1x1).dim-3x1, .multi-input-box:not(.dim-1x1).dim-2x2 {
+  flex-direction: row;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003138}}
+.multi-input-box:not(.dim-1x1).dim-1x2, .multi-input-box:not(.dim-1x1).dim-1x3 {
+  flex-direction: column;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003140}}
+.multi-input-box:not(.dim-1x1).dim-2x2 {
+  flex-wrap: wrap;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003150}}
+.multi-input-box:not(.dim-1x1) [class^="input-"] {
+  box-shadow: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003155}}
+.multi-input-box:not(.dim-1x1):not(:hover) {
+  justify-content: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003158}}
+.multi-input-box:not(.dim-1x1):not(:hover) [class^="input-"] {
+  -webkit-transition: width 0.1s, height 0.1s;
+  -moz-transition: width 0.1s, height 0.1s;
+  -o-transition: width 0.1s, height 0.1s;
+  transition: width 0.1s, height 0.1s;
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003163}}
+.multi-input-box:not(.dim-1x1):not(:hover) [class^="input-"] label {
+  box-shadow: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003166}}
+.multi-input-box:not(.dim-1x1):not(:hover) [class^="input-"] label:after {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003176}}
+.multi-input-box:not(.dim-1x1):not(:hover).dim-1x2 [class^="input-"], .multi-input-box:not(.dim-1x1):not(:hover).dim-1x3 [class^="input-"] {
+  width: 0.8125rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003177}}
+.multi-input-box:not(.dim-1x1):not(:hover).dim-2x1 [class^="input-"], .multi-input-box:not(.dim-1x1):not(:hover).dim-2x2 [class^="input-"] {
+  width: 0.40625rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003178}}
+.multi-input-box:not(.dim-1x1):not(:hover).dim-3x1 [class^="input-"] {
+  width: 0.27083rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003180}}
+.multi-input-box:not(.dim-1x1):not(:hover).dim-2x1 [class^="input-"], .multi-input-box:not(.dim-1x1):not(:hover).dim-3x1 [class^="input-"] {
+  height: 0.8125rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003181}}
+.multi-input-box:not(.dim-1x1):not(:hover).dim-1x2 [class^="input-"], .multi-input-box:not(.dim-1x1):not(:hover).dim-2x2 [class^="input-"] {
+  height: 0.40625rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003182}}
+.multi-input-box:not(.dim-1x1):not(:hover).dim-1x3 [class^="input-"] {
+  height: 0.27083rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003186}}
+.multi-input-box:not(.dim-1x1):hover, .multi-input-box:not(.dim-1x1).maximized {
+  position: absolute;
+  z-index: 10000;
+  justify-content: space-around;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003198}}
+.multi-input-box:not(.dim-1x1):hover.dim-1x2, .multi-input-box:not(.dim-1x1):hover.dim-1x3, .multi-input-box:not(.dim-1x1).maximized.dim-1x2, .multi-input-box:not(.dim-1x1).maximized.dim-1x3 {
+  width: 0.9375rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003199}}
+.multi-input-box:not(.dim-1x1):hover.dim-2x1, .multi-input-box:not(.dim-1x1):hover.dim-2x2, .multi-input-box:not(.dim-1x1).maximized.dim-2x1, .multi-input-box:not(.dim-1x1).maximized.dim-2x2 {
+  width: 1.8125rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003200}}
+.multi-input-box:not(.dim-1x1):hover.dim-3x1, .multi-input-box:not(.dim-1x1).maximized.dim-3x1 {
+  width: 2.6875rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003202}}
+.multi-input-box:not(.dim-1x1):hover.dim-2x1, .multi-input-box:not(.dim-1x1):hover.dim-3x1, .multi-input-box:not(.dim-1x1).maximized.dim-2x1, .multi-input-box:not(.dim-1x1).maximized.dim-3x1 {
+  height: 0.9375rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003203}}
+.multi-input-box:not(.dim-1x1):hover.dim-1x2, .multi-input-box:not(.dim-1x1):hover.dim-2x2, .multi-input-box:not(.dim-1x1).maximized.dim-1x2, .multi-input-box:not(.dim-1x1).maximized.dim-2x2 {
+  height: 1.8125rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003204}}
+.multi-input-box:not(.dim-1x1):hover.dim-1x3, .multi-input-box:not(.dim-1x1).maximized.dim-1x3 {
+  height: 2.6875rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003211}}
+.multi-input-box:not(.dim-1x1):hover.dim-1x2, .multi-input-box:not(.dim-1x1):hover.dim-1x3, .multi-input-box:not(.dim-1x1).maximized.dim-1x2, .multi-input-box:not(.dim-1x1).maximized.dim-1x3 {
+  margin-left: -0.0625rem;
+  margin-right: -0.0625rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003212}}
+.multi-input-box:not(.dim-1x1):hover.dim-2x1, .multi-input-box:not(.dim-1x1):hover.dim-2x2, .multi-input-box:not(.dim-1x1).maximized.dim-2x1, .multi-input-box:not(.dim-1x1).maximized.dim-2x2 {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003213}}
+.multi-input-box:not(.dim-1x1):hover.dim-3x1, .multi-input-box:not(.dim-1x1).maximized.dim-3x1 {
+  margin-left: -0.9375rem;
+  margin-right: -0.9375rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003215}}
+.multi-input-box:not(.dim-1x1):hover.dim-2x1, .multi-input-box:not(.dim-1x1):hover.dim-3x1, .multi-input-box:not(.dim-1x1).maximized.dim-2x1, .multi-input-box:not(.dim-1x1).maximized.dim-3x1 {
+  margin-top: -0.0625rem;
+  margin-bottom: -0.0625rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003216}}
+.multi-input-box:not(.dim-1x1):hover.dim-1x2, .multi-input-box:not(.dim-1x1):hover.dim-2x2, .multi-input-box:not(.dim-1x1).maximized.dim-1x2, .multi-input-box:not(.dim-1x1).maximized.dim-2x2 {
+  margin-top: -0.5rem;
+  margin-bottom: -0.5rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003217}}
+.multi-input-box:not(.dim-1x1):hover.dim-1x3, .multi-input-box:not(.dim-1x1).maximized.dim-1x3 {
+  margin-top: -0.9375rem;
+  margin-bottom: -0.9375rem;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/web-dev\/jquery_sandbox\/src\/user-interface\/radio-checkbox\.scss}line{font-family:\00003219}}
+.multi-input-box:not(.dim-1x1):hover [class^="input-"], .multi-input-box:not(.dim-1x1).maximized [class^="input-"] {
+  flex-base: 0.8125rem;
+  margin: auto;
+  -webkit-transition: width 0.1s, height 0.1s;
+  -moz-transition: width 0.1s, height 0.1s;
+  -o-transition: width 0.1s, height 0.1s;
+  transition: width 0.1s, height 0.1s;
+}
+
+/*# sourceMappingURL=radio-checkbox.css.map */

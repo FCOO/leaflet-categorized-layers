@@ -191,6 +191,16 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
 
     L.DomEvent.on(input, 'click', this._onInputClick, this);
     layer.appendChild(input);
+ 
+    // Convert check boxes to radio buttons for layers with primadonna option
+    var objA = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId];
+    $(input).createRadioCheckbox(objA.options.primadonna ? 'input-radio' : null);
+    $(input).parent().css({
+      display:'inline-block',
+      top: '1px',
+      'margin-top': '2px',
+      'margin-right': '2px'
+    });
 
     var name = document.createElement('span');
     name.innerHTML = ' ' + obj._name;
