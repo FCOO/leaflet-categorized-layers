@@ -302,6 +302,7 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
       }, this);
 
       this._map.on('click', this._collapse, this);
+      this._map.on('move', this._collapse, this);
       // TODO keyboard accessibility
     } else {
       this._expand();
