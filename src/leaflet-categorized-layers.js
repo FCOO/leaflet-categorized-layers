@@ -6,6 +6,7 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
     groupsCollapsed: true,
     collapseActiveGroups: false,
     position: 'topright',
+    mobileMode: true,
     autoZIndex: true
   },
   

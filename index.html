@@ -5,12 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="src/radio-checkbox.css" />
 </head>
 <body>
     <div id="map" style="width: 600px; height: 400px"></div>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="src/namespace.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/radio-checkbox.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/leaflet-categorized-layers.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="src/leaflet-categorized-layers-select.js" charset="UTF-8"></script>
     <script>
         var map = L.map('map').setView([56.5, 12.0], 5);
         var openstreetmap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
