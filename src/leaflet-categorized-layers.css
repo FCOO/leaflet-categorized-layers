@@ -2,6 +2,9 @@
   margin: 2px;
   margin-bottom: 5px;
 }
+p.leaflet-control-layers-heading {
+  margin: 0 0 0 0;
+}
 .leaflet-control-layers-list .leaflet-control-layers-group {
   margin: 2px 0 2px 0;
 }

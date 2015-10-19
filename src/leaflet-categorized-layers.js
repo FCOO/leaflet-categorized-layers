@@ -6,7 +6,7 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
     groupsCollapsed: true,
     collapseActiveGroups: false,
     position: 'topright',
-    mobileMode: true,
+    mobileMode: false,
     autoZIndex: true
   },
   
@@ -141,73 +141,97 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
   _addItem: function (obj) {
     var className = 'leaflet-control-layers',
       label, input, checked, appendTo;
+    var container;
     if(!this._groups[obj._categoryType][obj._category]) {
-      var group = L.DomUtil.create('div', className + '-group');
-
-      var groupHeader = document.createElement('span');
-      var collapsed = this.options.groupsCollapsed ? groupHeader.innerHTML = ' &#9658; ' : groupHeader.innerHTML = ' &#9660; '
-      groupHeader.innerHTML += obj._category;
-      groupHeader.className = 'groupHeader';
-      groupHeader.category = obj._category;
-      groupHeader.collapsed = collapsed;
-      L.DomEvent.on(groupHeader, 'click', this._onLabelClick);
-      group.appendChild(groupHeader);
-
-      var layers = document.createElement('span');
-      layers.className = 'groupLayers';
-      if(collapsed) {
-        layers.style.height = '0';
-        layers.style.display = 'none';
+      if (this.options.mobileMode) {
+          var header = $('<p></p>').html(obj._category)
+                       .addClass('leaflet-control-layers-heading');
+          var group = L.DomUtil.create('select', className + '-group');
+          $(group).on('change', this, this._onSelectChange);
+          if (obj._overlay) {
+              $(group).attr('multiple', 'multiple');
+          }
+          this._groups[obj._categoryType][obj._category] = $(group);
+          container = obj._overlay ? this._overlaysList : this._baseLayersList;
+          $(container).append(header);
+          $(container).append(group);
+          var separator = $('<br/>');
+          $(container).append(separator);
+      } else {
+          var group = L.DomUtil.create('div', className + '-group');
+          var groupHeader = document.createElement('span');
+          var collapsed = this.options.groupsCollapsed ? groupHeader.innerHTML = ' &#9658; ' : groupHeader.innerHTML = ' &#9660; '
+          groupHeader.innerHTML += obj._category;
+          groupHeader.className = 'groupHeader';
+          groupHeader.category = obj._category;
+          groupHeader.collapsed = collapsed;
+          L.DomEvent.on(groupHeader, 'click', this._onLabelClick);
+          group.appendChild(groupHeader);
+          var layers = document.createElement('span');
+          layers.className = 'groupLayers';
+          if(collapsed) {
+            layers.style.height = '0';
+            layers.style.display = 'none';
+          }
+          group.appendChild(layers);
+          this._groups[obj._categoryType][obj._category] = layers;
+          container = obj._overlay ? this._overlaysList : this._baseLayersList;
+          container.appendChild(group);
       }
-      group.appendChild(layers);
-
-      var container = obj._overlay ? this._overlaysList : this._baseLayersList;
-      container.appendChild(group);
-      this._groups[obj._categoryType][obj._category] = layers;
     }
 
     appendTo = this._groups[obj._categoryType][obj._category];
+    selected = this._map.hasLayer(obj);
 
-    layer = document.createElement('label');
-    checked = this._map.hasLayer(obj);
-    if((checked) && (!this.options.collapseActiveGroups)) {
-      appendTo.previousSibling.innerHTML = ' &#9660; '+appendTo.previousSibling.category;
-      appendTo.previousSibling.collapsed = false;
-      appendTo.style.height = '100%';
-      appendTo.style.display = 'block';
-    }
-    
-    if (obj._overlay) {
-      input = document.createElement('input');
-      input.type = 'checkbox';
-      input.className = 'leaflet-control-layers-selector';
-      input.defaultChecked = checked;
+    if (this.options.mobileMode) {
+        var option;
+        option = $('<option></option>').val(obj._name).html(obj._name);
+        $(appendTo).append(option);
+        option.prop('layerId', L.stamp(obj));
+        option.prop('category', obj._category);
+        option.prop('overlay', obj._overlay);
+        option.prop('selected', selected);
     } else {
-      input = this._createRadioElement('leaflet-base-layers', checked);
-    }
+        layer = document.createElement('label');
+        if((selected) && (!this.options.collapseActiveGroups)) {
+          appendTo.previousSibling.innerHTML = ' &#9660; '+appendTo.previousSibling.category;
+          appendTo.previousSibling.collapsed = false;
+          appendTo.style.height = '100%';
+          appendTo.style.display = 'block';
+        }
     
-    input.layerId = L.stamp(obj);
-    input.category = obj._category;
-    input.overlay = obj._overlay;
+        if (obj._overlay) {
+          input = document.createElement('input');
+          input.type = 'checkbox';
+          input.className = 'leaflet-control-layers-selector';
+          input.defaultChecked = selected;
+        } else {
+          input = this._createRadioElement('leaflet-base-layers', selected);
+        }
+    
+        input.layerId = L.stamp(obj);
+        input.category = obj._category;
+        input.overlay = obj._overlay;
 
-    L.DomEvent.on(input, 'click', this._onInputClick, this);
-    layer.appendChild(input);
+        L.DomEvent.on(input, 'click', this._onInputClick, this);
+        layer.appendChild(input);
  
-    // Convert check boxes to radio buttons for layers with primadonna option
-    var objA = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId];
-    $(input).createRadioCheckbox(objA.options.primadonna ? 'input-radio' : null);
-    $(input).parent().css({
-      display:'inline-block',
-      top: '1px',
-      'margin-top': '2px',
-      'margin-right': '2px'
-    });
+        // Convert check boxes to radio buttons for layers with primadonna option
+        var objA = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId];
+        $(input).createRadioCheckbox(objA.options.primadonna ? 'input-radio' : null);
+        $(input).parent().css({
+          display:'inline-block',
+          top: '1px',
+          'margin-top': '2px',
+          'margin-right': '2px'
+        });
 
-    var name = document.createElement('span');
-    name.innerHTML = ' ' + obj._name;
-    layer.appendChild(name);
-    appendTo.appendChild(layer);
-    return layer;
+        var name = document.createElement('span');
+        name.innerHTML = ' ' + obj._name;
+        layer.appendChild(name);
+        appendTo.appendChild(layer);
+        return layer;
+    }
   },
   _onLabelClick: function () {
     if(!this.collapsed) {
@@ -222,6 +246,51 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
       this.nextElementSibling.style.display = 'block';
     }
   },
+  _onSelectChange: function (evt) {
+    var i, input,
+        data = evt.data,
+        selects = evt.data._form.getElementsByTagName('select'),
+        selectsLen = selects.length;
+
+    this._handlingClick = true;
+
+    var iAdded = null;
+    var obj;
+    for (j = 0; j < selectsLen; j++) {
+      var inputs = selects[j].options;
+      var inputsLen = inputs.length;
+      for (i = 0; i < inputsLen; i++) {
+        input = inputs[i];
+        obj = input.overlay ? data._overlays[input.category][input.layerId] : data._layers[input.category][input.layerId]
+        if (input.selected && !data._map.hasLayer(obj)) {
+          data._map.addLayer(obj);
+          iAdded = i;
+          data._map.fire('overlayadd');
+        } else if (!input.selected && data._map.hasLayer(obj)) {
+          data._map.removeLayer(obj);
+          data._map.fire('overlayremove');
+        }
+      }
+    }
+    // Make sure that only one layer with the primadonna option is on stage
+    // at the same time
+    if (iAdded !== null) {
+      input = inputs[iAdded];
+      objA = input.overlay ? data._overlays[input.category][input.layerId] : data._layers[input.category][input.layerId]
+      if (objA.options.primadonna) {
+        for (i = 0; i < inputsLen; i++) {
+          input = inputs[i];
+          obj = input.overlay ? data._overlays[input.category][input.layerId] : data._layers[input.category][input.layerId]
+          if (obj !== objA && input.selected && data._map.hasLayer(obj) && obj.options.primadonna) {
+            input.selected = false; // Manually toggle checkbox
+            data._onInputClick(); // Manually call click handler
+          }
+        }
+      }
+    }
+
+    data._handlingClick = false;
+  },  
   _onInputClick: function () {
     var i, input,
         inputs = this._form.getElementsByTagName('input'),

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <link rel="stylesheet" href="src/radio-checkbox.css" />
+    <link rel="stylesheet" href="src/leaflet-categorized-layers.css" />
 </head>
 <body>
     <div id="map" style="width: 600px; height: 400px"></div>
@@ -29,6 +30,12 @@
         var layer13 = L.marker([57.5, 12.0])
         var layer21 = L.marker([55.5, 11.0])
         var layer22 = L.marker([55.5, 13.0])
+        var layer31 = L.marker([55.0, 11.0])
+        var layer32 = L.marker([55.0, 13.0])
+        var layer41 = L.marker([55.25, 11.0])
+        var layer42 = L.marker([55.25, 13.0])
+        var layer51 = L.marker([55.75, 11.0])
+        var layer52 = L.marker([55.75, 13.0])
 
         var overlays = {
             "Heading 1": {
@@ -39,11 +46,26 @@
             "Heading 2": {
                 "Layer 2.1": layer21,
                 "Layer 2.2": layer22
+            },
+            "Heading 3": {
+                "Layer 3.1": layer31,
+                "Layer 3.2": layer32
+            },
+            "Heading 4": {
+                "Layer 4.1": layer41,
+                "Layer 4.2": layer42
+            },
+            "Heading 5": {
+                "Layer 5.1": layer51,
+                "Layer 5.2": layer52
             }
         }
-        var options = {};
-        var layerControl = new L.Control.CategorizedLayers(basemaps, overlays, options);
-        map.addControl(layerControl);
+        var options1 = {collapsed: false, mobileMode: true};
+        var layerControl1 = new L.Control.CategorizedLayers(basemaps, overlays, options1);
+        map.addControl(layerControl1);
+        var options2 = {collapsed: false, mobileMode: false};
+        var layerControl2 = new L.Control.CategorizedLayers(basemaps, overlays, options2);
+        map.addControl(layerControl2);
     </script>
 </body>
 </html>
