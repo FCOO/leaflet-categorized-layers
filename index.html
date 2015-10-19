@@ -23,10 +23,11 @@
         })
         openstreetmap.addTo(map);
 
-
         var basemaps = {'Basemaps': {'OSM': openstreetmap}}
         var layer11 = L.marker([55.5, 12.0])
+        layer11.options.primadonna = true;
         var layer12 = L.marker([56.5, 12.0])
+        layer12.options.primadonna = true;
         var layer13 = L.marker([57.5, 12.0])
         var layer21 = L.marker([55.5, 11.0])
         var layer22 = L.marker([55.5, 13.0])
