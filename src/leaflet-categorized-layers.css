@@ -1,3 +1,9 @@
+.leaflet-control-layers {
+  overflow-y: auto; 
+  -webkit-overflow-scrolling: touch;
+  max-height: 200px;
+}
+
 .leaflet-control-layers-list > div {
   margin: 2px;
   margin-bottom: 5px;
@@ -26,3 +32,22 @@ p.leaflet-control-layers-heading {
   color: rgba(0,0,0,0.5);
   font-weight: bold;
 }
+
+@media screen and (min-height: 400px) {
+  .leaflet-control-layers {
+    max-height: 300px;
+  }
+}
+
+@media screen and (min-height: 641px) {
+  .leaflet-control-layers {
+    max-height: 541px;
+  }
+}
+
+@media screen and (min-height: 1025px) {
+  .leaflet-control-layers {
+    max-height: none;
+  }
+}
+

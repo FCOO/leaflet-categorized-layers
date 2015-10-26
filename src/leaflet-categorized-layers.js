@@ -375,6 +375,9 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
         L.DomEvent
             .on(link, 'click', L.DomEvent.stop)
             .on(link, 'click', this._expand, this);
+        L.DomEvent
+          .disableClickPropagation(container)
+          .disableScrollPropagation(container);
       }
       else {
         L.DomEvent.on(link, 'focus', this._expand, this);
@@ -385,7 +388,7 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
       }, this);
 
       this._map.on('click', this._collapse, this);
-      this._map.on('move', this._collapse, this);
+      //this._map.on('move', this._collapse, this);
       // TODO keyboard accessibility
     } else {
       this._expand();

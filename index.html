@@ -33,6 +33,10 @@
         var layer22 = L.marker([55.5, 13.0])
         var layer31 = L.marker([55.0, 11.0])
         var layer32 = L.marker([55.0, 13.0])
+        var layer33 = L.marker([55.0, 13.0])
+        var layer34 = L.marker([55.0, 13.0])
+        var layer35 = L.marker([55.0, 13.0])
+        var layer36 = L.marker([55.0, 13.0])
         var layer41 = L.marker([55.25, 11.0])
         var layer42 = L.marker([55.25, 13.0])
         var layer51 = L.marker([55.75, 11.0])
@@ -50,7 +54,11 @@
             },
             "Heading 3": {
                 "Layer 3.1": layer31,
-                "Layer 3.2": layer32
+                "Layer 3.2": layer32,
+                "Layer 3.3": layer33,
+                "Layer 3.4": layer34,
+                "Layer 3.5": layer35,
+                "Layer 3.6": layer36
             },
             "Heading 4": {
                 "Layer 4.1": layer41,
@@ -61,9 +69,9 @@
                 "Layer 5.2": layer52
             }
         }
-        var options1 = {collapsed: false, mobileMode: true};
-        var layerControl1 = new L.Control.CategorizedLayers(basemaps, overlays, options1);
-        map.addControl(layerControl1);
+        //var options1 = {collapsed: false, mobileMode: true};
+        //var layerControl1 = new L.Control.CategorizedLayers(basemaps, overlays, options1);
+        //map.addControl(layerControl1);
         var options2 = {collapsed: false, mobileMode: false};
         var layerControl2 = new L.Control.CategorizedLayers(basemaps, overlays, options2);
         map.addControl(layerControl2);
