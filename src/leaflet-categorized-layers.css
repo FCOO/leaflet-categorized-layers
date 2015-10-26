@@ -39,15 +39,22 @@ p.leaflet-control-layers-heading {
   }
 }
 
-@media screen and (min-height: 641px) {
+@media screen and (min-height: 641px) and (max-height: 640) {
   .leaflet-control-layers {
     max-height: 541px;
   }
 }
 
+/* This is where the time selector is moved to the left */
+@media screen and (min-width: 641px) and (min-height: 641px) {
+  .leaflet-control-layers {
+    max-height: 491px;
+  }
+}
+
 @media screen and (min-height: 1025px) {
   .leaflet-control-layers {
-    max-height: none;
+    max-height: 875px;
   }
 }
 
