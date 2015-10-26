@@ -3,13 +3,22 @@
 <head>
     <title>Leaflet control containing a home button</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <link rel="stylesheet" href="src/radio-checkbox.css" />
     <link rel="stylesheet" href="src/leaflet-categorized-layers.css" />
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+        }
+   </style>
 </head>
 <body>
-    <div id="map" style="width: 100%; height: 100%"></div>
+    <div id="map"/>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="src/namespace.js" charset="UTF-8"></script>
@@ -40,7 +49,14 @@
         var layer41 = L.marker([55.25, 11.0])
         var layer42 = L.marker([55.25, 13.0])
         var layer51 = L.marker([55.75, 11.0])
-        var layer52 = L.marker([55.75, 13.0])
+        var layer52 = L.marker([55.73, 13.0])
+        var layer53 = L.marker([55.71, 11.0])
+        var layer54 = L.marker([55.69, 11.0])
+        var layer55 = L.marker([55.67, 11.0])
+        var layer56 = L.marker([55.65, 11.0])
+        var layer57 = L.marker([55.63, 11.0])
+        var layer58 = L.marker([55.61, 11.0])
+        var layer59 = L.marker([55.59, 11.0])
 
         var overlays = {
             "Heading 1": {
@@ -66,7 +82,14 @@
             },
             "Heading 5": {
                 "Layer 5.1": layer51,
-                "Layer 5.2": layer52
+                "Layer 5.2": layer52,
+                "Layer 5.3": layer53,
+                "Layer 5.4": layer54,
+                "Layer 5.5": layer55,
+                "Layer 5.6": layer56,
+                "Layer 5.7": layer57,
+                "Layer 5.8": layer58,
+                "Layer 5.9": layer59,
             }
         }
         //var options1 = {collapsed: false, mobileMode: true};
