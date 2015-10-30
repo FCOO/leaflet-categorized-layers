@@ -12,6 +12,10 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
   
   initialize: function (baseLayers, overlays, options) {
     L.setOptions(this, options);
+
+    var className = 'leaflet-control-layers';
+    this._container = L.DomUtil.create('div', className);
+
     this._layers = {};
     this._overlays = {};
     this._groups = {
@@ -346,7 +350,7 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
   },  
   _initLayout: function () {
     var className = 'leaflet-control-layers',
-        container = this._container = L.DomUtil.create('div', className);
+        container = this._container;
 
     //Makes this work on IE10 Touch devices by stopping it from firing a mouseout event when the touch is released
     container.setAttribute('aria-haspopup', true);
