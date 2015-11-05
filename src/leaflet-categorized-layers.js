@@ -223,7 +223,6 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
         input.category = obj._category;
         input.overlay = obj._overlay;
 
-        L.DomEvent.on(input, 'click', this._onInputClick, this);
         layer.appendChild(input);
  
         // Convert check boxes to radio buttons for layers with primadonna option
@@ -239,6 +238,7 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
         var name = document.createElement('span');
         name.innerHTML = ' ' + obj._name;
         layer.appendChild(name);
+        L.DomEvent.on(layer, 'click', this._onInputClick, this);
         appendTo.appendChild(layer);
         return layer;
     }
