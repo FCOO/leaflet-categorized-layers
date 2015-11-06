@@ -74,18 +74,22 @@ Methods to create and modify input elements e.q. <input type="checkbox">
 		//className = the class for the div-element around
 		var className = '';
 		
-		if (forceType)
+		if (forceType) {
 			className = forceType;
-		else
-		  if (this.hasClass('display-as-checkbox'))
-				className = 'input-checkbox';				  
+            if (forceType == 'input-radio') {
+                this.addClass('display-as-radio');
+            }
+        } else {
+		  if (this.hasClass('display-as-checkbox')) {
+			className = 'input-checkbox';
+          } else {
+			if (this.hasClass('display-as-radio'))
+			    className = 'input-radio';				  
 			else
-			  if (this.hasClass('display-as-radio'))
-					className = 'input-radio';				  
-				else
-					className = (this.attr('type') == 'checkbox') ? 'input-checkbox' : 'input-radio';
+				className = (this.attr('type') == 'checkbox') ? 'input-checkbox' : 'input-radio';
+          }
+        }
 
-	
 		//Check if the input-element already is 'created'
 		if (this.parent().hasClass( className ))
 			return this;  
