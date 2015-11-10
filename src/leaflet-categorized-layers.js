@@ -353,7 +353,7 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
         container = this._container;
 
     //Makes this work on IE10 Touch devices by stopping it from firing a mouseout event when the touch is released
-    container.setAttribute('aria-haspopup', true);
+    //container.setAttribute('aria-haspopup', true);
 
     if (!L.Browser.touch) {
       L.DomEvent
