@@ -407,6 +407,10 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
   },
   _collapse: function () {
     this._container.className = this._container.className.replace(' leaflet-control-layers-expanded', '');
+  },
+  _checkDisabledLayers: function () {
+    // Overridden with empty method. This means that we do not disable
+    // layers outside allowed zoom range
   }
 });
 
