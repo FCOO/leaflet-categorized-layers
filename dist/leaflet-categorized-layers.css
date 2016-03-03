@@ -1,0 +1,298 @@
+/***********************************************
+	leaflet-categorized-layers.scss, 
+
+	(c) 2015, FCOO
+
+	https://github.com/FCOO/leaflet-categorized-layers
+	https://github.com/FCOO
+
+
+************************************************/
+.leaflet-control-layers {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: 200px; }
+
+.leaflet-control-layers-list > div {
+  margin: 2px;
+  margin-bottom: 5px; }
+
+p.leaflet-control-layers-heading {
+  margin: 0 0 0 0; }
+
+.leaflet-control-layers-list .leaflet-control-layers-group {
+  margin: 2px 0 2px 0; }
+
+.leaflet-control-layers-list .leaflet-control-layers-group .groupHeader {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.leaflet-control-layers-list .leaflet-control-layers-sub-separator {
+  border-top: 1px solid #000;
+  margin: 2px 0px 2px 0px; }
+
+.leaflet-control-layers-list .leaflet-control-layers-group span:first-child {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold; }
+
+@media screen and (min-height: 400px) {
+  .leaflet-control-layers {
+    max-height: 300px; } }
+
+@media screen and (min-height: 641px) and (max-height: 640) {
+  .leaflet-control-layers {
+    max-height: 541px; } }
+
+/* This is where the time selector is moved to the left */
+@media screen and (min-width: 641px) and (min-height: 641px) {
+  .leaflet-control-layers {
+    max-height: 491px; } }
+
+@media screen and (min-height: 1025px) {
+  .leaflet-control-layers {
+    max-height: 875px; } }
+;/***********************************************************************************
+RADIO-CHECKBOX.SCSS
+Style for radio and checkbox input-eleemnts
+
+Based on
+CSS Checkbox Styles 
+by Kushagra Agarwal http://kushagra.me 
+on http://cssdeck.com
+http://cssdeck.com/labs/css-checkbox-styles
+
+Modyfied by Niels Holt/FCOO
+
+There are 9 different input-style:
+3 slides: className = sliderOne, slideTwo, slideThree
+2 round : className = roundedOne, roundedTwo
+4 square: className = squaredOne, squaredTwo, squaredThree, squaredFour
+
+Each style is defined by a class-name and the input is 'packed' like this
+<div class="theClassName">	
+	<input type="checkbox" value="None" id="idCheckBox" name="check" />
+	<label for="idCheckBox"></label>
+</div>
+'theClassName' defines the layout.
+Currently only roundedOne (for radio) and squaredOne (for checkbox)
+are used. They are renamed to 'input-radio' and 'input-checkbox' and modified in size
+***********************************************************************************/
+/*********************************************************************
+_USER-INTERFACE.SCSS
+Contains the common scss declarations, variable and functions used by FCOO
+***********************************************************************/
+/***********************************************
+Common mixin and function
+***********************************************/
+/******************************************
+Functions to work with lists
+eq. $list = name1 value1, name2, value2, name3, value3;
+**********************************************/
+/*******************************************************
+get-list-value returns the value cooresponding to
+$key in $list
+E.q.: `get-list-value($list, name2)` will return value2
+*********************************************************/
+/*************************************************************
+*************************************************************
+COLOR
+The color-name are the same as used in leaflet.js and by
+L.AwesomeMarkers etc.
+*************************************************************
+*************************************************************/
+/*************************************************************
+*************************************************************
+COLOR CONTRACT
+Taken from http://codepen.io/lunelson/pen/jENxwB
+*************************************************************
+*************************************************************/
+/*************************************************************
+*************************************************************
+ICONS
+To use the mixins regarding icons, the scss-file MUST provide 
+a list named "$icon-list" where each row has a icon-name and a char-code
+Eq.:
+	$icon-list: 
+		ok			"\ed6c",	
+		cancel	"\ed6a",	
+		close		"\ed6b"	
+	;
+
+and (optional) the name of the font-family:
+ $icon-font-family: 'icomoon';
+
+and the @font-face (perhaps generated via bourbon "@include font-face(icomoon, 'icomoon-1.5.1/icomoon');"
+	@font-face {
+		font-family: icomoon;
+	  src: url("icomoon-1.5.1/icomoon.eot?#iefix") format("embedded-opentype"), url("icomoon-1.5.1/icomoon.woff2") format("woff2"), url("icomoon-1.5.1/icomoon.woff") format("woff"), url("icomoon-1.5.1/icomoon.ttf") format("truetype"), url("icomoon-1.5.1/icomoon.svg#icomoon") format("svg");
+	}
+
+*************************************************************
+*************************************************************/
+.input-checkbox, .input-radio {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 0.8125rem;
+  height: 0.8125rem;
+  background-color: #fcfff4;
+  background-image: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background-image: linear-gradient(to bottom,#fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  box-shadow: inset 0 0.0625rem 0.0625rem white, 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.8);
+  cursor: default; }
+  .input-checkbox input, .input-radio input {
+    position: absolute;
+    left: -9999px; }
+  .input-checkbox label, .input-radio label {
+    position: absolute;
+    left: 7.6923076923%;
+    top: 7.6923076923%;
+    width: 84.6153846154%;
+    height: 84.6153846154%;
+    background-color: #222;
+    background-image: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+    background-image: linear-gradient(to bottom,#222 0%, #45484d 100%);
+    box-shadow: inset 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.5), 0 0.0625rem 0 white;
+    cursor: pointer; }
+    .input-checkbox label:after, .input-radio label:after {
+      position: absolute;
+      top: 9.0909090909%;
+      left: 9.0909090909%;
+      width: 81.8181818182%;
+      height: 81.8181818182%;
+      background-color: #00bf00;
+      background-image: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%);
+      background-image: linear-gradient(to bottom,#00bf00 0%, #009400 100%);
+      opacity: 0;
+      content: ''; }
+    .input-checkbox label:hover::after, .input-radio label:hover::after {
+      opacity: 0.3; }
+  .input-checkbox input:checked + label:after, .input-radio input:checked + label:after {
+    opacity: 1; }
+  .input-checkbox input.semi-selected:checked + label:after, .input-radio input.semi-selected:checked + label:after {
+    background-color: #bfbf00;
+    background-image: -webkit-linear-gradient(top, #bfbf00 0%, #949400 100%);
+    background-image: linear-gradient(to bottom,#bfbf00 0%, #949400 100%); }
+
+.input-radio {
+  border-radius: 3.125rem; }
+  .input-radio label {
+    border-radius: 3.125rem; }
+    .input-radio label:after {
+      border-radius: 3.125rem; }
+
+/*************************************************************
+multi-input-box is a div containing 1-4 checkbox- or radio-input
+The <input> are only visible when the div is hover or clicked
+The <input> are dispalyed as 1x1, 1x2, 2x1, 1x3, 3x1 or 2x2 given by the class for the div
+<div class="multi-input-box dim-3x1">
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+	<input type="checkbox"/>
+</div>
+*************************************************************/
+.multi-input-box.dim-1x1 [class^="input-"]:nth-child(1n+2) {
+  display: none; }
+
+.multi-input-box.dim-2x1 [class^="input-"]:nth-child(1n+3), .multi-input-box.dim-1x2 [class^="input-"]:nth-child(1n+3) {
+  display: none; }
+
+.multi-input-box.dim-3x1 [class^="input-"]:nth-child(1n+4), .multi-input-box.dim-1x3 [class^="input-"]:nth-child(1n+4) {
+  display: none; }
+
+.multi-input-box:not(.dim-1x1) {
+  display: flex;
+  width: 0.8125rem;
+  height: 0.8125rem;
+  margin: 0;
+  background-color: #fcfff4;
+  background-image: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background-image: linear-gradient(to bottom,#fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  box-shadow: inset 0 0.0625rem 0.0625rem white, 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.8);
+  -webkit-transition: width 0.1s, height 0.1s, margin 0.1s;
+  -moz-transition: width 0.1s, height 0.1s, margin 0.1s;
+  -o-transition: width 0.1s, height 0.1s, margin 0.1s;
+  transition: width 0.1s, height 0.1s, margin 0.1s; }
+  .multi-input-box:not(.dim-1x1).dim-2x1, .multi-input-box:not(.dim-1x1).dim-3x1, .multi-input-box:not(.dim-1x1).dim-2x2 {
+    flex-direction: row; }
+  .multi-input-box:not(.dim-1x1).dim-1x2, .multi-input-box:not(.dim-1x1).dim-1x3 {
+    flex-direction: column; }
+  .multi-input-box:not(.dim-1x1).dim-2x2 {
+    flex-wrap: wrap; }
+  .multi-input-box:not(.dim-1x1) [class^="input-"] {
+    box-shadow: none; }
+  .multi-input-box:not(.dim-1x1):not(:hover) {
+    justify-content: center; }
+    .multi-input-box:not(.dim-1x1):not(:hover) [class^="input-"] {
+      -webkit-transition: width 0.1s, height 0.1s;
+      -moz-transition: width 0.1s, height 0.1s;
+      -o-transition: width 0.1s, height 0.1s;
+      transition: width 0.1s, height 0.1s;
+      margin: 0; }
+      .multi-input-box:not(.dim-1x1):not(:hover) [class^="input-"] label {
+        box-shadow: none; }
+        .multi-input-box:not(.dim-1x1):not(:hover) [class^="input-"] label:after {
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%; }
+    .multi-input-box:not(.dim-1x1):not(:hover).dim-1x2 [class^="input-"], .multi-input-box:not(.dim-1x1):not(:hover).dim-1x3 [class^="input-"] {
+      width: 0.8125rem; }
+    .multi-input-box:not(.dim-1x1):not(:hover).dim-2x1 [class^="input-"], .multi-input-box:not(.dim-1x1):not(:hover).dim-2x2 [class^="input-"] {
+      width: 0.40625rem; }
+    .multi-input-box:not(.dim-1x1):not(:hover).dim-3x1 [class^="input-"] {
+      width: 0.2708333333rem; }
+    .multi-input-box:not(.dim-1x1):not(:hover).dim-2x1 [class^="input-"], .multi-input-box:not(.dim-1x1):not(:hover).dim-3x1 [class^="input-"] {
+      height: 0.8125rem; }
+    .multi-input-box:not(.dim-1x1):not(:hover).dim-1x2 [class^="input-"], .multi-input-box:not(.dim-1x1):not(:hover).dim-2x2 [class^="input-"] {
+      height: 0.40625rem; }
+    .multi-input-box:not(.dim-1x1):not(:hover).dim-1x3 [class^="input-"] {
+      height: 0.2708333333rem; }
+  .multi-input-box:not(.dim-1x1):hover, .multi-input-box:not(.dim-1x1).maximized {
+    position: absolute;
+    z-index: 10000;
+    justify-content: space-around;
+    padding: 0; }
+    .multi-input-box:not(.dim-1x1):hover.dim-1x2, .multi-input-box:not(.dim-1x1):hover.dim-1x3, .multi-input-box:not(.dim-1x1).maximized.dim-1x2, .multi-input-box:not(.dim-1x1).maximized.dim-1x3 {
+      width: 0.9375rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-2x1, .multi-input-box:not(.dim-1x1):hover.dim-2x2, .multi-input-box:not(.dim-1x1).maximized.dim-2x1, .multi-input-box:not(.dim-1x1).maximized.dim-2x2 {
+      width: 1.8125rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-3x1, .multi-input-box:not(.dim-1x1).maximized.dim-3x1 {
+      width: 2.6875rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-2x1, .multi-input-box:not(.dim-1x1):hover.dim-3x1, .multi-input-box:not(.dim-1x1).maximized.dim-2x1, .multi-input-box:not(.dim-1x1).maximized.dim-3x1 {
+      height: 0.9375rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-1x2, .multi-input-box:not(.dim-1x1):hover.dim-2x2, .multi-input-box:not(.dim-1x1).maximized.dim-1x2, .multi-input-box:not(.dim-1x1).maximized.dim-2x2 {
+      height: 1.8125rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-1x3, .multi-input-box:not(.dim-1x1).maximized.dim-1x3 {
+      height: 2.6875rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-1x2, .multi-input-box:not(.dim-1x1):hover.dim-1x3, .multi-input-box:not(.dim-1x1).maximized.dim-1x2, .multi-input-box:not(.dim-1x1).maximized.dim-1x3 {
+      margin-left: -0.0625rem;
+      margin-right: -0.0625rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-2x1, .multi-input-box:not(.dim-1x1):hover.dim-2x2, .multi-input-box:not(.dim-1x1).maximized.dim-2x1, .multi-input-box:not(.dim-1x1).maximized.dim-2x2 {
+      margin-left: -0.5rem;
+      margin-right: -0.5rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-3x1, .multi-input-box:not(.dim-1x1).maximized.dim-3x1 {
+      margin-left: -0.9375rem;
+      margin-right: -0.9375rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-2x1, .multi-input-box:not(.dim-1x1):hover.dim-3x1, .multi-input-box:not(.dim-1x1).maximized.dim-2x1, .multi-input-box:not(.dim-1x1).maximized.dim-3x1 {
+      margin-top: -0.0625rem;
+      margin-bottom: -0.0625rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-1x2, .multi-input-box:not(.dim-1x1):hover.dim-2x2, .multi-input-box:not(.dim-1x1).maximized.dim-1x2, .multi-input-box:not(.dim-1x1).maximized.dim-2x2 {
+      margin-top: -0.5rem;
+      margin-bottom: -0.5rem; }
+    .multi-input-box:not(.dim-1x1):hover.dim-1x3, .multi-input-box:not(.dim-1x1).maximized.dim-1x3 {
+      margin-top: -0.9375rem;
+      margin-bottom: -0.9375rem; }
+    .multi-input-box:not(.dim-1x1):hover [class^="input-"], .multi-input-box:not(.dim-1x1).maximized [class^="input-"] {
+      flex-base: 0.8125rem;
+      margin: auto;
+      -webkit-transition: width 0.1s, height 0.1s;
+      -moz-transition: width 0.1s, height 0.1s;
+      -o-transition: width 0.1s, height 0.1s;
+      transition: width 0.1s, height 0.1s; }

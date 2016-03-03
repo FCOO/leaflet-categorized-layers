@@ -1,34 +1,30 @@
 {
-  "name"		: "leaflet-categorized-layers",
-  "version"	: "0.0.7",
+  "name": "leaflet-categorized-layers",
+  "version": "0.0.8",
   "homepage": "https://github.com/FCOO/leaflet-categorized-layers",
   "authors": [
     "Robbie Trencheny <me@robbiet.us>",
-		"Jesper Larsen <jla@fcoo.dk>"
+    "Jesper Larsen <jla@fcoo.dk>"
   ],
   "description": "A layer control for Leaflet that supports categories",
   "main": [
     "dist/leaflet-categorized-layers.min.js",
     "dist/leaflet-categorized-layers.min.css"
   ],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/FCOO/leaflet-categorized-layers.git"
-	},
-
-	"dependencies": {
-		"jquery": "latest",
-		"leaflet": "latest"
-	},
-
-	"devDependencies": {
-    "bourbon": "latest",
-		"modernizr-mixin": "latest",
-		"mathsass": "latest"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FCOO/leaflet-categorized-layers.git"
   },
-	
-	"license": "MIT",
-
+  "dependencies": {
+    "jquery": "latest",
+    "leaflet": "latest"
+  },
+  "devDependencies": {
+    "bourbon": "latest",
+    "modernizr-mixin": "latest",
+    "mathsass": "latest"
+  },
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",

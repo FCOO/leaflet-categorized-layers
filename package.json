@@ -1,13 +1,13 @@
 {
-  "name"		: "leaflet-categorized-layers",
-  "version"	: "0.0.7",
+  "name": "leaflet-categorized-layers",
+  "version": "0.0.8",
   "homepage": "https://github.com/FCOO/leaflet-categorized-layers",
-	"author": "Jesper Larsen jla@fcoo.dk",
-	"description": "package.json is only use for building the package. see bower.json for more info",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/FCOO/leaflet-categorized-layers.git"
-	},
+  "author": "Jesper Larsen jla@fcoo.dk",
+  "description": "package.json is only use for building the package. see bower.json for more info",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FCOO/leaflet-categorized-layers.git"
+  },
   "devDependencies": {
     "grunt-bower-concat": "~1.0.0",
     "grunt-continue": "~0.1.0",
