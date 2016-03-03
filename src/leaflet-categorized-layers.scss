@@ -8,21 +8,31 @@
 
 
 ************************************************/
+//BOURBON - http://bourbon.io/
+@import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
+
+//MODERNIZR-MIXIN - https://github.com/danielguillan/modernizr-mixin
+@import "../bower_components/modernizr-mixin/stylesheets/modernizr";
+
+//MATHSASS - https://github.com/terkel/mathsass
+@import "../bower_components/mathsass/dist/math";
+
 .leaflet-control-layers {
-  overflow-y: auto;
+  overflow-y: auto; 
   -webkit-overflow-scrolling: touch;
-  max-height: 200px; }
+  max-height: 200px;
+}
 
 .leaflet-control-layers-list > div {
   margin: 2px;
-  margin-bottom: 5px; }
-
+  margin-bottom: 5px;
+}
 p.leaflet-control-layers-heading {
-  margin: 0 0 0 0; }
-
+  margin: 0 0 0 0;
+}
 .leaflet-control-layers-list .leaflet-control-layers-group {
-  margin: 2px 0 2px 0; }
-
+  margin: 2px 0 2px 0;
+}
 .leaflet-control-layers-list .leaflet-control-layers-group .groupHeader {
   cursor: pointer;
   -webkit-touch-callout: none;
@@ -30,29 +40,40 @@ p.leaflet-control-layers-heading {
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
-
+  user-select: none;
+}
+.leaflet-control-layers-list .leaflet-control-layers-group .groupLayers {}
 .leaflet-control-layers-list .leaflet-control-layers-sub-separator {
   border-top: 1px solid #000;
-  margin: 2px 0px 2px 0px; }
-
+  margin: 2px 0px 2px 0px;
+}
 .leaflet-control-layers-list .leaflet-control-layers-group span:first-child {
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: bold; }
+  color: rgba(0,0,0,0.5);
+  font-weight: bold;
+}
 
 @media screen and (min-height: 400px) {
   .leaflet-control-layers {
-    max-height: 300px; } }
+    max-height: 300px;
+  }
+}
 
 @media screen and (min-height: 641px) and (max-height: 640) {
   .leaflet-control-layers {
-    max-height: 541px; } }
+    max-height: 541px;
+  }
+}
 
 /* This is where the time selector is moved to the left */
 @media screen and (min-width: 641px) and (min-height: 641px) {
   .leaflet-control-layers {
-    max-height: 491px; } }
+    max-height: 491px;
+  }
+}
 
 @media screen and (min-height: 1025px) {
   .leaflet-control-layers {
-    max-height: 875px; } }
+    max-height: 875px;
+  }
+}
+

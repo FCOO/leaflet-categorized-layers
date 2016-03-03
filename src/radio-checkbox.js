@@ -7,8 +7,6 @@ Methods to create and modify input elements e.q. <input type="checkbox">
 //******************************************
   "use strict";
 
-	var nsInterface = window.fcoo.namespace('fcoo.interface');
-
 	/******************************************
 	RadioGroup
 	Creates a group of radio-buttons.
@@ -58,9 +56,9 @@ Methods to create and modify input elements e.q. <input type="checkbox">
 			if (this.selectedIndex > -1)
 				this.onChange( this.children[this.selectedIndex].attr('id'), true, this);
 		};
-	};
+	}
 	
-	nsInterface.RadioGroup = RadioGroup;
+	window.RadioGroup = RadioGroup;
 	
 	/******************************************
 	Create checkbox and radio-input
@@ -143,12 +141,12 @@ Methods to create and modify input elements e.q. <input type="checkbox">
 			var childUnchecked = 0;
 			$.each( $(this).data('checkbox-children'), function( indexInArray, $child ){
 				if ($child.prop('checked'))
-					childChecked++
+					childChecked++;
 				else
 					childUnchecked++;
 			});
 			//Update the group-input
-			$(this).toggleClass('semi-selected', childChecked*childUnchecked != 0);
+			$(this).toggleClass('semi-selected', childChecked*childUnchecked !== 0);
 			$(this).prop('checked', childChecked ? true : false);
 		});
 		return this;

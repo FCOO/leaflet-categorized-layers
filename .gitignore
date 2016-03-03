@@ -1,2 +1,4 @@
-node_modules/*
-.DS_Store
+/*.bak
+/node_modules/
+/bower_components/
+/.sass-cache/

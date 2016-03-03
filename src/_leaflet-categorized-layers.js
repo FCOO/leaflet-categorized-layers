@@ -1,16 +1,7 @@
-/****************************************************************************
-	leaflet-categorized-layers.js, 
-
-	https://github.com/FCOO/leaflet-categorized-layers
-	https://github.com/FCOO
-
-****************************************************************************/
-;(function ($, L, window, document, undefined) {
-	"use strict";
+(function() {
 
 L.Control.CategorizedLayers = L.Control.Layers.extend({
   options: {
-		VERSION: "{VERSION}",
     collapsed: true,
     groupsCollapsed: true,
     collapseActiveGroups: false,
@@ -129,7 +120,7 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
 
     var baseLayersPresent = false,
         overlaysPresent = false,
-        obj;
+        i, obj;
 
     // Initialize select
     if (this.options.mobileMode) {
@@ -163,7 +154,8 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
   },
   _addItem: function (obj) {
     var className = 'leaflet-control-layers',
-				input, appendTo, selected, layer, container;
+      label, input, checked, appendTo;
+    var container;
 
     if(!this._groups[obj._categoryType][obj._category]) {
       if (this.options.mobileMode) {
@@ -178,7 +170,7 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
       } else {
           var group = L.DomUtil.create('div', className + '-group');
           var groupHeader = document.createElement('span');
-          var collapsed = this.options.groupsCollapsed ? groupHeader.innerHTML = ' &#9658; ' : groupHeader.innerHTML = ' &#9660; ';
+          var collapsed = this.options.groupsCollapsed ? groupHeader.innerHTML = ' &#9658; ' : groupHeader.innerHTML = ' &#9660; '
           groupHeader.innerHTML += obj._category;
           groupHeader.className = 'groupHeader';
           groupHeader.category = obj._category;
@@ -269,26 +261,25 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
     }
   },
   _onSelectChange: function (evt) {
-    var i, j, input,
+    var i, input,
         data = evt.data,
         selects = evt.data._form.getElementsByTagName('select'),
-	      selectsLen = selects.length,
-				selectedOption = evt.originalEvent.explicitOriginalTarget,
-				jAdded = null,
-				iAdded = null,
-				obj,
-				inputs,
-				inputsLen;
+        selectsLen = selects.length;
 
     this._handlingClick = true;
-		
-		for (j = 0; j < selectsLen; j++) {
-      inputs = selects[j].options;
-      inputsLen = inputs.length;
+
+    var selectedOption = evt.originalEvent.explicitOriginalTarget;
+
+    var jAdded = null;
+    var iAdded = null;
+    var obj;
+    for (j = 0; j < selectsLen; j++) {
+      var inputs = selects[j].options;
+      var inputsLen = inputs.length;
       for (i = 0; i < inputsLen; i++) {
         input = inputs[i];
         if ($(input).attr('disabled') !== 'disabled') {
-          obj = input.overlay ? data._overlays[input.category][input.layerId] : data._layers[input.category][input.layerId];
+          obj = input.overlay ? data._overlays[input.category][input.layerId] : data._layers[input.category][input.layerId]
           if (input.selected && !data._map.hasLayer(obj)) {
             data._map.addLayer(obj);
             jAdded = j;
@@ -304,11 +295,11 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
     // Make sure that only one layer with the primadonna option is on stage
     // at the same time
     if (iAdded !== null) {
-      var objA = selectedOption.layer;
+      objA = selectedOption.layer;
       if (objA.options.primadonna) {
         for (i = 0; i < inputsLen; i++) {
           input = inputs[i];
-          obj = input.overlay ? data._overlays[input.category][input.layerId] : data._layers[input.category][input.layerId];
+          obj = input.overlay ? data._overlays[input.category][input.layerId] : data._layers[input.category][input.layerId]
           if (obj !== objA && input.selected && data._map.hasLayer(obj) && obj.options.primadonna) {
             // Manually toggle other primadonnas
             $(selects[jAdded].options[input.index]).prop("selected", false);
@@ -332,7 +323,7 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
     var obj;
     for (i = 0; i < inputsLen; i++) {
       input = inputs[i];
-      obj = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId];
+      obj = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId]
       if (input.checked && !this._map.hasLayer(obj)) {
         this._map.addLayer(obj);
         iAdded = i;
@@ -346,11 +337,11 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
     // at the same time
     if (iAdded !== null) {
       input = inputs[iAdded];
-      var objA = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId];
+      objA = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId]
       if (objA.options.primadonna) {
         for (i = 0; i < inputsLen; i++) {
           input = inputs[i];
-          obj = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId];
+          obj = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId]
           if (obj !== objA && input.checked && this._map.hasLayer(obj) && obj.options.primadonna) {
             input.checked = false; // Manually toggle checkbox
             this._onInputClick(); // Manually call click handler
@@ -423,7 +414,5 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
   }
 });
 
-}(jQuery, L, this, document));
 
-
-
+}).call(this);
