@@ -63,10 +63,10 @@ $input-box-shadow: inset 0 1px 1px white, 0 1px 3px rgba(0,0,0,0.8);
 
 	label { 
 		position: absolute;
-		left    : ($input-outer-thickness / $input-checkbox-dim)100%; 
-		top     : ($input-outer-thickness / $input-checkbox-dim)*100%; 
-		width   : ($input-label-dim				/ $input-checkbox-dim)*100%; 
-		height  : ($input-label-dim				/ $input-checkbox-dim)*100%; 
+		left    : $input-outer-thickness; //($input-outer-thickness / $input-checkbox-dim)100%; 
+		top     : $input-outer-thickness; //($input-outer-thickness / $input-checkbox-dim)*100%; 
+		width   : $input-label-dim;				//($input-label-dim				/ $input-checkbox-dim)*100%; 
+		height  : $input-label-dim;				//($input-label-dim				/ $input-checkbox-dim)*100%; 
 
 		@include linear-gradient(top, #222 0%, #45484d 100%);
 
@@ -77,10 +77,10 @@ $input-box-shadow: inset 0 1px 1px white, 0 1px 3px rgba(0,0,0,0.8);
 
 		&:after { 
 			position: absolute;
-			top     : ($input-inner-thickness / $input-label-dim)*100%; 
-			left    : ($input-inner-thickness / $input-label-dim)*100%; 
-			width   : ($input-inner-dim				/ $input-label-dim)*100%; 
-			height  : ($input-inner-dim				/ $input-label-dim)*100%; 
+			top     : $input-inner-thickness;	//($input-inner-thickness / $input-label-dim)*100%; 
+			left    : $input-inner-thickness;	//($input-inner-thickness / $input-label-dim)*100%; 
+			width   : $input-inner-dim;				//($input-inner-dim				/ $input-label-dim)*100%; 
+			height  : $input-inner-dim;				//($input-inner-dim				/ $input-label-dim)*100%; 
 	
 			@include linear-gradient(top, #00bf00 0%, #009400 100%); //Green
 			opacity: 0;

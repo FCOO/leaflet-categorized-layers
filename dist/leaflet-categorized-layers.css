@@ -98,10 +98,10 @@ are used. They are renamed to 'input-radio' and 'input-checkbox' and modified in
     left: -9999px; }
   .input-checkbox label, .input-radio label {
     position: absolute;
-    left: 0.0769230769 100%;
-    top: 7.6923076923%;
-    width: 84.6153846154%;
-    height: 84.6153846154%;
+    left: 1px;
+    top: 1px;
+    width: 11px;
+    height: 11px;
     background-color: #222;
     background-image: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
     background-image: linear-gradient(to bottom,#222 0%, #45484d 100%);
@@ -109,10 +109,10 @@ are used. They are renamed to 'input-radio' and 'input-checkbox' and modified in
     cursor: pointer; }
     .input-checkbox label:after, .input-radio label:after {
       position: absolute;
-      top: 9.0909090909%;
-      left: 9.0909090909%;
-      width: 81.8181818182%;
-      height: 81.8181818182%;
+      top: 1px;
+      left: 1px;
+      width: 9px;
+      height: 9px;
       background-color: #00bf00;
       background-image: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%);
       background-image: linear-gradient(to bottom,#00bf00 0%, #009400 100%);

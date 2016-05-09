@@ -1,5 +1,5 @@
 {   
-  "isApplication"								: false,	//true for stand-alone applications. false for packages/plugins
+  "isApplication"								: false, 	//true for stand-alone applications. false for packages/plugins
   "haveJavaScript"							: true,		//true if the packages have js-files
   "haveStyleSheet"							: true,		//true if the packages have css and/or scss-files
 	"haveGhPages"									: true,		//true if there is a branch "gh-pages" used for demos
