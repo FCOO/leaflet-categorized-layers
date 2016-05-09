@@ -1,6 +1,6 @@
 {
   "name": "leaflet-categorized-layers",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "homepage": "https://github.com/FCOO/leaflet-categorized-layers",
   "authors": [
     "Robbie Trencheny <me@robbiet.us>",
@@ -8,8 +8,8 @@
   ],
   "description": "A layer control for Leaflet that supports categories",
   "main": [
-    "dist/leaflet-categorized-layers.min.js",
-    "dist/leaflet-categorized-layers.min.css"
+    "dist/leaflet-categorized-layers.js",
+    "dist/leaflet-categorized-layers.css"
   ],
   "repository": {
     "type": "git",

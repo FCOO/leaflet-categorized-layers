@@ -27,15 +27,19 @@ are used. They are renamed to 'input-radio' and 'input-checkbox' and modified in
 //BOURBON - http://bourbon.io/
 @import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
 
-@import "user-interface";
+// @import "user-interface";
+$input-checkbox-dim: 13px;
 
-$input-outer-thickness :  rem(1);
-$input-inner-thickness :  rem(1);
+
+
+$input-outer-thickness :  1px; //rem(1);
+$input-inner-thickness :  1px; //rem(1);
 
 $input-label-dim : $input-checkbox-dim - 2*$input-outer-thickness;
 $input-inner-dim : $input-label-dim - 2*$input-inner-thickness;
 
-$input-box-shadow: inset 0 rem(1) rem(1) white, 0 rem(1) rem(3) rgba(0,0,0,0.8);
+//$input-box-shadow: inset 0 rem(1) rem(1) white, 0 rem(1) rem(3) rgba(0,0,0,0.8);
+$input-box-shadow: inset 0 1px 1px white, 0 1px 3px rgba(0,0,0,0.8);
 
 @mixin input-box-gradient { @include linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%); };
 
@@ -59,14 +63,15 @@ $input-box-shadow: inset 0 rem(1) rem(1) white, 0 rem(1) rem(3) rgba(0,0,0,0.8);
 
 	label { 
 		position: absolute;
-		left    : ($input-outer-thickness / $input-checkbox-dim)*100%; 
+		left    : ($input-outer-thickness / $input-checkbox-dim)100%; 
 		top     : ($input-outer-thickness / $input-checkbox-dim)*100%; 
 		width   : ($input-label-dim				/ $input-checkbox-dim)*100%; 
 		height  : ($input-label-dim				/ $input-checkbox-dim)*100%; 
 
 		@include linear-gradient(top, #222 0%, #45484d 100%);
 
-		box-shadow: inset 0 rem(1) rem(1) rgba(0,0,0,0.5), 0 rem(1) 0 rgba(255,255,255,1);
+//		box-shadow: inset 0 rem(1) rem(1) rgba(0,0,0,0.5), 0 rem(1) 0 rgba(255,255,255,1);
+		box-shadow: inset 0 1px 1px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,1);
 
 		cursor  : pointer;
 
@@ -100,131 +105,17 @@ $input-box-shadow: inset 0 rem(1) rem(1) white, 0 rem(1) rem(3) rgba(0,0,0,0.8);
 //Radio-box: Same as check-box but with round borders
 .input-radio {
 	@extend .input-checkbox;
-	border-radius: rem(50px);
+//	border-radius: rem(50px);
+	border-radius: 50px;
 	label { 
-		border-radius: rem(50px); 
+//		border-radius: rem(50px); 
+		border-radius: 50px; 
 		&:after { 
-		  border-radius: rem(50px);
+//		  border-radius: rem(50px);
+		  border-radius: 50px;
 		}
 	}
 }
 
 
 
-/*************************************************************
-multi-input-box is a div containing 1-4 checkbox- or radio-input
-The <input> are only visible when the div is hover or clicked
-The <input> are dispalyed as 1x1, 1x2, 2x1, 1x3, 3x1 or 2x2 given by the class for the div
-<div class="multi-input-box dim-3x1">
-	<input type="checkbox"/>
-	<input type="checkbox"/>
-	<input type="checkbox"/>
-	<input type="checkbox"/>
-</div>
-*************************************************************/
-.multi-input-box {
-	//Hide not-used input
-	&.dim-1x1							{	[class^="input-"]:nth-child(1n+2){ display:none;} }
-	&.dim-2x1, &.dim-1x2	{	[class^="input-"]:nth-child(1n+3){ display:none;} }
-	&.dim-3x1, &.dim-1x3	{	[class^="input-"]:nth-child(1n+4){ display:none;} }
-}
-
-
-//Style allways applayed, but not for 1x1-mode
-.multi-input-box:not(.dim-1x1) {
-	$input-box-transition-period: .1s;
-
-
-	display: flex;
-	&.dim-2x1, &.dim-3x1, &.dim-2x2	{	flex-direction:row;			}
-	&.dim-1x2, &.dim-1x3						{	flex-direction:column;	}
-
-	&.dim-2x2												{	flex-wrap: wrap;				}
-
-	width	:	$input-checkbox-dim;
-	height:	$input-checkbox-dim;
-	margin: 0;
-	@include input-box-gradient();
-	box-shadow: $input-box-shadow;
-
-	@include transition-transform(width $input-box-transition-period, height $input-box-transition-period, margin $input-box-transition-period);
-
-	[class^="input-"] { 
-		box-shadow: none;
-	}
-
-	//Style appley when NOT mouse-over - ignored when class=maximized
-	&:not(:hover) {
-		justify-content: center;
-	
-		[class^="input-"]{ 
-			//Transform when going from normal->mini
-			@include transition-transform(width $input-box-transition-period, height $input-box-transition-period);
-
-			margin		: 0;
-			label { 
-				//Remove shadow and border from labels
-				box-shadow: none;
-				&:after {
-					top		: 0;
-					left	: 0;
-					width	: 100%;
-					height: 100%;
-				}
-			}
-		}
-
-		//The width and height of the input in mini-mode
-		&.dim-1x2, &.dim-1x3	{ [class^="input-"] { width: $input-checkbox-dim/1;	} }
-		&.dim-2x1, &.dim-2x2	{ [class^="input-"] { width: $input-checkbox-dim/2;	} }
-		&.dim-3x1							{ [class^="input-"] { width: $input-checkbox-dim/3;	} }
-
-		&.dim-2x1, &.dim-3x1	{ [class^="input-"] { height: $input-checkbox-dim/1;	} }
-		&.dim-1x2, &.dim-2x2	{ [class^="input-"] { height: $input-checkbox-dim/2;	} }
-		&.dim-1x3							{ [class^="input-"] { height: $input-checkbox-dim/3;	} }
-	}
-
-	//Style apply when mouse-over OR with class=maximized
-	&:hover,
-	&.maximized {
-		position: absolute;
-		z-index: 10000;
-		justify-content	: space-around;
-		padding					: 0;
-	
-		$input-margin: rem(1px);
-		$dim1: 1*$input-checkbox-dim + 2*$input-margin;		
-		$dim2: 2*$input-checkbox-dim + 3*$input-margin;
-		$dim3: 3*$input-checkbox-dim + 4*$input-margin;
-
-		&.dim-1x2, &.dim-1x3	{ width: $dim1;	}
-		&.dim-2x1, &.dim-2x2	{ width: $dim2;	}
-		&.dim-3x1							{ width: $dim3;	}
-
-		&.dim-2x1, &.dim-3x1	{ height: $dim1;	}
-		&.dim-1x2, &.dim-2x2	{ height: $dim2;	}
-		&.dim-1x3							{ height: $dim3;	}
-
-		//	Margin when maximized
-		$dim1-margin: ($input-checkbox-dim - $dim1)/2; 
-		$dim2-margin: ($input-checkbox-dim - $dim2)/2; 
-		$dim3-margin: ($input-checkbox-dim - $dim3)/2; 
-
-		&.dim-1x2, &.dim-1x3	{ margin-left: $dim1-margin;	margin-right: $dim1-margin; }
-		&.dim-2x1, &.dim-2x2	{ margin-left: $dim2-margin;	margin-right: $dim2-margin; }
-		&.dim-3x1							{ margin-left: $dim3-margin;	margin-right: $dim3-margin; }
-
-		&.dim-2x1, &.dim-3x1	{ margin-top: $dim1-margin;	margin-bottom: $dim1-margin; }
-		&.dim-1x2, &.dim-2x2	{ margin-top: $dim2-margin;	margin-bottom: $dim2-margin; }
-		&.dim-1x3							{ margin-top: $dim3-margin;	margin-bottom: $dim3-margin; }
-	
-		[class^="input-"] { 
-			flex-base	: $input-checkbox-dim;
-			margin		: auto; 
-
-			//Transform when going from mini->normal
-			@include transition-transform(width $input-box-transition-period, height $input-box-transition-period);
-
-		}
-	}
-}
