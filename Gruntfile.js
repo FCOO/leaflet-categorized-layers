@@ -419,7 +419,7 @@ concat_options_css
 		//** bower_concat **
 		bower_concat: {
 			options: {
-				separator : grunt.util.linefeed + '22222;22222' + grunt.util.linefeed
+				separator : grunt.util.linefeed + ';' + grunt.util.linefeed
 			},
 			all: {
 				dest: {
