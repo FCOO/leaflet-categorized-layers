@@ -56,7 +56,8 @@ p.leaflet-control-layers-heading {
 @media screen and (min-height: 1025px) {
   .leaflet-control-layers {
     max-height: 875px; } }
-;/***********************************************************************************
+
+/***********************************************************************************
 RADIO-CHECKBOX.SCSS
 Style for radio and checkbox input-eleemnts
 

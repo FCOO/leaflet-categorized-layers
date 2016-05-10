@@ -10,7 +10,7 @@
 
 L.Control.CategorizedLayers = L.Control.Layers.extend({
   options: {
-		VERSION: "0.1.0",
+		VERSION: "0.1.1",
     collapsed: true,
     groupsCollapsed: true,
     collapseActiveGroups: false,
@@ -427,7 +427,9 @@ L.Control.CategorizedLayers = L.Control.Layers.extend({
 
 
 
-;/****************************************************************************
+
+;
+/****************************************************************************
 RADIOCHECKBOX.JS
 Methods to create and modify input elements e.q. <input type="checkbox">
 *****************************************************************************/
