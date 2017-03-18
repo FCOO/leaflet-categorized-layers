@@ -1,61 +1,33 @@
 /***********************************************
-	leaflet-categorized-layers.scss, 
+    leaflet-categorized-layers.scss, 
 
-	(c) 2015, FCOO
+    (c) 2015, FCOO
 
-	https://github.com/FCOO/leaflet-categorized-layers
-	https://github.com/FCOO
+    https://github.com/FCOO/leaflet-categorized-layers
+    https://github.com/FCOO
 
 
 ************************************************/
-.leaflet-control-layers {
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  max-height: 200px; }
-
-.leaflet-control-layers-list > div {
-  margin: 2px;
-  margin-bottom: 5px; }
-
-p.leaflet-control-layers-heading {
-  margin: 0 0 0 0; }
-
 .leaflet-control-layers-list .leaflet-control-layers-group {
   margin: 2px 0 2px 0; }
-
-.leaflet-control-layers-list .leaflet-control-layers-group .groupHeader {
-  cursor: pointer;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+  .leaflet-control-layers-list .leaflet-control-layers-group .groupHeader {
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  .leaflet-control-layers-list .leaflet-control-layers-group span:first-child {
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold; }
 
 .leaflet-control-layers-list .leaflet-control-layers-sub-separator {
   border-top: 1px solid #000;
   margin: 2px 0px 2px 0px; }
 
-.leaflet-control-layers-list .leaflet-control-layers-group span:first-child {
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: bold; }
-
-@media screen and (min-height: 400px) {
-  .leaflet-control-layers {
-    max-height: 300px; } }
-
-@media screen and (min-height: 641px) and (max-height: 640) {
-  .leaflet-control-layers {
-    max-height: 541px; } }
-
-/* This is where the time selector is moved to the left */
-@media screen and (min-width: 641px) and (min-height: 641px) {
-  .leaflet-control-layers {
-    max-height: 491px; } }
-
-@media screen and (min-height: 1025px) {
-  .leaflet-control-layers {
-    max-height: 875px; } }
+.leaflet-control-layers-list label {
+  display: block; }
 
 /***********************************************************************************
 RADIO-CHECKBOX.SCSS
@@ -75,9 +47,9 @@ There are 9 different input-style:
 4 square: className = squaredOne, squaredTwo, squaredThree, squaredFour
 
 Each style is defined by a class-name and the input is 'packed' like this
-<div class="theClassName">	
-	<input type="checkbox" value="None" id="idCheckBox" name="check" />
-	<label for="idCheckBox"></label>
+<div class="theClassName">    
+    <input type="checkbox" value="None" id="idCheckBox" name="check" />
+    <label for="idCheckBox"></label>
 </div>
 'theClassName' defines the layout.
 Currently only roundedOne (for radio) and squaredOne (for checkbox)

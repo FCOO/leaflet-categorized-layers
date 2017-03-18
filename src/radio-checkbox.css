@@ -16,9 +16,9 @@ There are 9 different input-style:
 4 square: className = squaredOne, squaredTwo, squaredThree, squaredFour
 
 Each style is defined by a class-name and the input is 'packed' like this
-<div class="theClassName">	
-	<input type="checkbox" value="None" id="idCheckBox" name="check" />
-	<label for="idCheckBox"></label>
+<div class="theClassName">    
+    <input type="checkbox" value="None" id="idCheckBox" name="check" />
+    <label for="idCheckBox"></label>
 </div>
 'theClassName' defines the layout.
 Currently only roundedOne (for radio) and squaredOne (for checkbox)

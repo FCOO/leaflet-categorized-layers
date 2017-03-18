@@ -41,6 +41,11 @@ http://FCOO.github.io/leaflet-categorized-layers/demo/
 
 ### options
 
+| Id | Type | Default | Description |
+| :--: | :--: | :-----: | --- |
+| options1 | boolean | true | If <code>true</code> the ... |
+| options2 | string | null | Contain the ... |
+
 ### Methods
 
 
@@ -54,16 +59,5 @@ Copyright
 ## Contact information
 
 Jesper Larsen jla@fcoo.dk
-
-
-## Credits and acknowledgements
-
-
-## Known bugs
-
-## Troubleshooting
-
-## Changelog
-
 
 
