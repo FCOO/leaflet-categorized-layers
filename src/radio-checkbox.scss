@@ -16,9 +16,9 @@ There are 9 different input-style:
 4 square: className = squaredOne, squaredTwo, squaredThree, squaredFour
 
 Each style is defined by a class-name and the input is 'packed' like this
-<div class="theClassName">	
-	<input type="checkbox" value="None" id="idCheckBox" name="check" />
-	<label for="idCheckBox"></label>
+<div class="theClassName">    
+    <input type="checkbox" value="None" id="idCheckBox" name="check" />
+    <label for="idCheckBox"></label>
 </div>
 'theClassName' defines the layout.
 Currently only roundedOne (for radio) and squaredOne (for checkbox)
@@ -35,7 +35,7 @@ $input-outer-thickness :  1px; //rem(1);
 $input-inner-thickness :  1px; //rem(1);
 
 $input-label-dim : $input-checkbox-dim - 2*$input-outer-thickness;
-$input-inner-dim : $input-label-dim - 2*$input-inner-thickness;
+$input-inner-dim : $input-label-dim    - 2*$input-inner-thickness;
 
 //$input-box-shadow: inset 0 rem(1) rem(1) white, 0 rem(1) rem(3) rgba(0,0,0,0.8);
 $input-box-shadow: inset 0 1px 1px white, 0 1px 3px rgba(0,0,0,0.8);
@@ -43,77 +43,77 @@ $input-box-shadow: inset 0 1px 1px white, 0 1px 3px rgba(0,0,0,0.8);
 @mixin input-box-gradient { @include linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%); };
 
 .input-checkbox { 
-	box-sizing: border-box;
+    box-sizing: border-box;
 
-	position: relative;
-	display: block;
-	width     : $input-checkbox-dim;
-	height    : $input-checkbox-dim;
-	
-	@include input-box-gradient();
-	box-shadow: $input-box-shadow;
+    position: relative;
+    display: block;
+    width     : $input-checkbox-dim;
+    height    : $input-checkbox-dim;
+    
+    @include input-box-gradient();
+    box-shadow: $input-box-shadow;
 
-	cursor: default;
-	
-	input {
-		position: absolute;
-		left		: -9999px;
-	}
+    cursor: default;
+    
+    input {
+        position: absolute;
+        left    : -9999px;
+    }
 
-	label { 
-		position: absolute;
-		left    : $input-outer-thickness; //($input-outer-thickness / $input-checkbox-dim)100%; 
-		top     : $input-outer-thickness; //($input-outer-thickness / $input-checkbox-dim)*100%; 
-		width   : $input-label-dim;				//($input-label-dim				/ $input-checkbox-dim)*100%; 
-		height  : $input-label-dim;				//($input-label-dim				/ $input-checkbox-dim)*100%; 
+    label { 
+        position: absolute;
+        left    : $input-outer-thickness; //($input-outer-thickness / $input-checkbox-dim)100%; 
+        top     : $input-outer-thickness; //($input-outer-thickness / $input-checkbox-dim)*100%; 
+        width   : $input-label-dim;       //($input-label-dim       / $input-checkbox-dim)*100%; 
+        height  : $input-label-dim;       //($input-label-dim       / $input-checkbox-dim)*100%; 
 
-		@include linear-gradient(top, #222 0%, #45484d 100%);
+        @include linear-gradient(top, #222 0%, #45484d 100%);
 
-//		box-shadow: inset 0 rem(1) rem(1) rgba(0,0,0,0.5), 0 rem(1) 0 rgba(255,255,255,1);
-		box-shadow: inset 0 1px 1px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,1);
+//        box-shadow: inset 0 rem(1) rem(1) rgba(0,0,0,0.5), 0 rem(1) 0 rgba(255,255,255,1);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,1);
 
-		cursor  : pointer;
+        cursor  : pointer;
 
-		&:after { 
-			position: absolute;
-			top     : $input-inner-thickness;	//($input-inner-thickness / $input-label-dim)*100%; 
-			left    : $input-inner-thickness;	//($input-inner-thickness / $input-label-dim)*100%; 
-			width   : $input-inner-dim;				//($input-inner-dim				/ $input-label-dim)*100%; 
-			height  : $input-inner-dim;				//($input-inner-dim				/ $input-label-dim)*100%; 
-	
-			@include linear-gradient(top, #00bf00 0%, #009400 100%); //Green
-			opacity: 0;
+        &:after { 
+            position: absolute;
+            top     : $input-inner-thickness;    //($input-inner-thickness / $input-label-dim)*100%; 
+            left    : $input-inner-thickness;    //($input-inner-thickness / $input-label-dim)*100%; 
+            width   : $input-inner-dim;          //($input-inner-dim       / $input-label-dim)*100%; 
+            height  : $input-inner-dim;          //($input-inner-dim       / $input-label-dim)*100%; 
+    
+            @include linear-gradient(top, #00bf00 0%, #009400 100%); //Green
+            opacity: 0;
 
-			content: '';
-		}
-	
-		&:hover::after { opacity: 0.3; }
+            content: '';
+        }
+    
+        &:hover::after { opacity: 0.3; }
 
-	}
-	input:checked + label:after	{ 
-		opacity: 1; 
-	}
+    }
+    input:checked + label:after    { 
+        opacity: 1; 
+    }
 
-	//Semi-selected: The checkbox is yellow
-	input.semi-selected:checked + label:after	{ 
-		@include linear-gradient(top, #bfbf00 0%, #949400 100%); //Yellow
-	}
+    //Semi-selected: The checkbox is yellow
+    input.semi-selected:checked + label:after    { 
+        @include linear-gradient(top, #bfbf00 0%, #949400 100%); //Yellow
+    }
 }
 
 
 //Radio-box: Same as check-box but with round borders
 .input-radio {
-	@extend .input-checkbox;
-//	border-radius: rem(50px);
-	border-radius: 50px;
-	label { 
-//		border-radius: rem(50px); 
-		border-radius: 50px; 
-		&:after { 
-//		  border-radius: rem(50px);
-		  border-radius: 50px;
-		}
-	}
+    @extend .input-checkbox;
+//    border-radius: rem(50px);
+    border-radius: 50px;
+    label { 
+//        border-radius: rem(50px); 
+        border-radius: 50px; 
+        &:after { 
+//          border-radius: rem(50px);
+          border-radius: 50px;
+        }
+    }
 }
 
 

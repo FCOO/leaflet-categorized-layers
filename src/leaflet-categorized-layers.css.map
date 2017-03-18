@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA;;;;;;;;;iDASiD;AAY7C,0DAA8B;EAC1B,MAAM,EAAE,WAAW;;AACnB,uEAAa;EACT,MAAM,EAAE,OAAO;EACf,qBAAqB,EAAE,IAAI;EAC3B,mBAAmB,EAAE,IAAI;EACzB,kBAAkB,EAAE,IAAI;EACxB,gBAAgB,EAAE,IAAI;EACtB,eAAe,EAAE,IAAI;EACrB,WAAW,EAAE,IAAI;;AAKrB,2EAAiB;EACb,KAAK,EAAE,kBAAe;EACtB,WAAW,EAAE,IAAI;;AAIzB,kEAAsC;EAClC,UAAU,EAAE,cAAc;EAC1B,MAAM,EAAE,eAAe;;AAG3B,kCAAM;EAAE,OAAO,EAAE,KAAK",
+"sources": ["leaflet-categorized-layers.scss"],
+"names": [],
+"file": "leaflet-categorized-layers.css"
+}

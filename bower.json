@@ -1,6 +1,6 @@
 {
   "name": "leaflet-categorized-layers",
-  "version": "0.1.2",
+  "version": "1.0.1",
   "homepage": "https://github.com/FCOO/leaflet-categorized-layers",
   "authors": [
     "Robbie Trencheny <me@robbiet.us>",
@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "jquery": "latest",
-    "leaflet": "latest"
+    "leaflet": "latest",
+    "leaflet-control-box": "fcoo/leaflet-control-box#^3.1.2"
   },
   "devDependencies": {
     "bourbon": "latest",
