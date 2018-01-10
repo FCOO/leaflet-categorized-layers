@@ -1,5 +1,5 @@
 /****************************************************************************
-    leaflet-categorized-layers.js, 
+    leaflet-categorized-layers.js,
 
     https://github.com/FCOO/leaflet-categorized-layers
     https://github.com/FCOO
@@ -10,23 +10,23 @@
 
     L.Control.CategorizedLayers = L.Control.Layers.extend({
         options: {
-            VERSION: "1.0.1",
-            collapsed: true,
-            groupsCollapsed: true,
+            VERSION             : "2.0.0",
+            minimized           : false,
+            groupsCollapsed     : true,
             collapseActiveGroups: false,
 
-            position     : 'topright', 
+            position     : 'topleft',
             iconClassName: 'fa-bars',
-            header       : '',    
-            height       : 1,
-            width        : 160,
+            header       : '',
+            height       : 0.8,
+            width        : 200,
 
             autoZIndex: true,
-            
+
             //AddText = function to add test to element. Can be overwriten with user-defined function
             addText: function ( elem, text ){ elem.innerHTML += text; }
         },
-  
+
         onAdd: function( map ){
 
             //Use the control-box as container
@@ -37,8 +37,8 @@
             L.Control.Layers.prototype.onAdd.call(this, map);
 
             return result;
-            
-        }, 
+
+        },
 
         initialize: function (baseLayers, overlays, options) {
             L.setOptions(this, options);
@@ -53,7 +53,7 @@
             };
             this._lastZIndex = 0;
             this._handlingClick = false;
-            for (var layerCategory in baseLayers) { 
+            for (var layerCategory in baseLayers) {
                 this._layers[layerCategory] = {};
                 for (var baseLayer in baseLayers[layerCategory]) {
                     baseLayers[layerCategory][baseLayer]._category = layerCategory;
@@ -80,9 +80,9 @@
             var category = e.layer._overlay ? this._overlays[e.layer._category] : this._layers[e.layer._category];
 
             if (!category) { return; }
-    
+
             var obj = category[L.stamp(e.layer)];
-    
+
             if (!obj) { return; }
 
             if (!this._handlingClick) {
@@ -106,7 +106,7 @@
             this._addLayer(layer, category);
             this._update();
             return this;
-        },  
+        },
 
         addOverlay: function (layer, category, name) {
             layer._category = category;
@@ -131,19 +131,19 @@
                 if ( !this._overlays[obj._category] )
                     this._overlays[obj._category] = {};
                 this._overlays[obj._category][id] = obj;
-            } 
+            }
             else {
                 if ( !this._layers[obj._category] )
                     this._layers[obj._category] = {};
                 this._layers[obj._category][id] = obj;
             }
-        
+
             if (this.options.autoZIndex && obj.setZIndex) {
                 this._lastZIndex++;
                 obj.setZIndex(this._lastZIndex);
             }
         },
-    
+
         _update: function () {
             if (!this._contentContainer) {
                 return;
@@ -229,17 +229,17 @@
                 input.type = 'checkbox';
                 input.className = 'leaflet-control-layers-selector';
                 input.defaultChecked = selected;
-            } 
+            }
             else {
                 input = this._createRadioElement('leaflet-base-layers', selected);
             }
-    
+
             input.layerId = L.stamp(obj);
             input.category = obj._category;
             input.overlay = obj._overlay;
 
             layer.appendChild(input);
- 
+
             // Convert check boxes to radio buttons for layers with primadonna option
             var objA = input.overlay ? this._overlays[input.category][input.layerId] : this._layers[input.category][input.layerId];
             $(input).createRadioCheckbox(objA.options.primadonna ? 'input-radio' : null);
@@ -267,7 +267,7 @@
                     height: '0',
                     display: 'none'
                 });
-            } 
+            }
             else {
                 this.collapsed = false;
                 this.innerHTML = ' &#9660; ' + this.category;
@@ -289,9 +289,9 @@
                 obj,
                 inputs,
                 inputsLen;
-    
+
             this._handlingClick = true;
-        
+
             for (j = 0; j < selectsLen; j++) {
                 inputs = selects[j].options;
                 inputsLen = inputs.length;
@@ -304,8 +304,8 @@
                             jAdded = j;
                             iAdded = i;
                             data._map.fire('overlayadd');
-                        } 
-                        else 
+                        }
+                        else
                             if (!input.selected && data._map.hasLayer(obj)) {
                                 data._map.removeLayer(obj);
                                 data._map.fire('overlayremove');
@@ -313,7 +313,7 @@
                     }
                 }
             }
-    
+
             // Make sure that only one layer with the primadonna option is on stage at the same time
             if (iAdded !== null) {
                 var objA = selectedOption.layer;
@@ -330,17 +330,17 @@
                     }
                 }
             }
-    
+
             data._handlingClick = false;
-        },  
-    
+        },
+
         _onInputClick: function () {
             var i, input,
                 inputs = this._form.getElementsByTagName('input'),
                 inputsLen = inputs.length;
-    
+
             this._handlingClick = true;
-    
+
             var iAdded = null;
             var obj;
             for (i = 0; i < inputsLen; i++) {
@@ -350,14 +350,14 @@
                     this._map.addLayer(obj);
                     iAdded = i;
                     this._map.fire('overlayadd');
-                } 
-                else 
+                }
+                else
                     if (!input.checked && this._map.hasLayer(obj)) {
                         this._map.removeLayer(obj);
                         this._map.fire('overlayremove');
                     }
             }
-    
+
             // Make sure that only one layer with the primadonna option is on stage at the same time
             if (iAdded !== null) {
                 input = inputs[iAdded];
@@ -373,31 +373,31 @@
                     }
                 }
             }
-    
+
             this._handlingClick = false;
-        },  
+        },
 
         _initLayout: function () {
             var className = 'leaflet-control-layers',
                 container = this._contentContainer;
-    
+
             if (!L.Browser.touch) {
                 L.DomEvent
                     .disableClickPropagation(container)
                     .disableScrollPropagation(container);
-            } 
+            }
             else {
                 L.DomEvent.on(container, 'click', L.DomEvent.stopPropagation);
             }
-    
+
             var form = this._form = L.DomUtil.create('form', className + '-list');
-    
+
             if (this.options.collapsed) {
                 var link = this._layersLink = L.DomUtil.create('a', className + '-toggle', container);
-    
+
                 link.href = '#';
                 link.title = 'Layers';
-    
+
                 if (L.Browser.touch) {
                     L.DomEvent
                         .on(link, 'click', L.DomEvent.stop)
@@ -409,34 +409,34 @@
                 else {
                     L.DomEvent.on(link, 'focus', this._expand, this);
                 }
-    
+
                 //Work around for Firefox android issue https://github.com/Leaflet/Leaflet/issues/2033
                 L.DomEvent.on(form, 'click', function () {
                     setTimeout(L.bind(this._onInputClick, this), 0);
                 }, this);
-    
+
                 this._map.on('click', this._collapse, this);
                 //this._map.on('move', this._collapse, this);
                 // TODO keyboard accessibility
             } else {
                 this._expand();
             }
-    
+
             this._baseLayersList = L.DomUtil.create('div', className + '-base', form);
             this._separator = L.DomUtil.create('div', className + '-sub-separator', form);
             this._overlaysList = L.DomUtil.create('div', className + '-overlays', form);
             container.appendChild(form);
         },
-    
-    
+
+
         _expand: function () {
 //            L.DomUtil.addClass(this._container, 'leaflet-control-layers-expanded');
         },
-    
+
         _collapse: function () {
 //            this._container.className = this._container.className.replace(' leaflet-control-layers-expanded', '');
         },
-    
+
         _checkDisabledLayers: function () {
             // Overridden with empty method. This means that we do not disable
             // layers outside allowed zoom range
