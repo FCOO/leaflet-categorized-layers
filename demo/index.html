@@ -9,15 +9,15 @@
     <meta name='copyright' content='FCOO'>
     <meta name='owner' content='FCOO'>
 
-    <link  href="bower_components.css" rel="stylesheet">    
-    <link  href="css/font-awesome.css" rel="stylesheet">	
-<!-- 
-    <link  href="../src/leaflet-categorized-layers.css" rel="stylesheet">    
-  <link  href="../src/radio-checkbox.css" rel="stylesheet">    
+    <link  href="bower_components.css" rel="stylesheet">
+    <link  href="css/font-awesome.css" rel="stylesheet">
+<!--
+    <link  href="../src/leaflet-categorized-layers.css" rel="stylesheet">
+  <link  href="../src/radio-checkbox.css" rel="stylesheet">
  -->
-    <link  href="../dist/leaflet-categorized-layers.css" rel="stylesheet">    
+    <link  href="../dist/leaflet-categorized-layers.css" rel="stylesheet">
 
-    
+
     <style>
         body {
             padding: 0;
@@ -38,7 +38,7 @@
     <script src="../src/radio-checkbox.js"></script>
     <script>
 
-        var map = L.map('map').setView([56.5, 12.0], 5);
+        var map = L.map('map', {zoomControl: false}).setView([56.5, 12.0], 5);
         var openstreetmap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
@@ -106,7 +106,7 @@
             }
         }
 
-        var layerControl = new L.Control.CategorizedLayers(basemaps, overlays, {collapsed: false});
+        var layerControl = new L.Control.CategorizedLayers(basemaps, overlays, {minimized: false});
 
         map.addControl(layerControl);
 
