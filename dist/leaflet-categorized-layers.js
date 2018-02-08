@@ -10,7 +10,7 @@
 
     L.Control.CategorizedLayers = L.Control.Layers.extend({
         options: {
-            VERSION             : "2.0.1",
+            VERSION             : "2.0.2",
             minimized           : false,
             groupsCollapsed     : true,
             collapseActiveGroups: false,
