@@ -43,6 +43,15 @@
         initialize: function (baseLayers, overlays, options) {
             L.setOptions(this, options);
 
+            //From L.Control.Layers.prototype.initialize:
+            L.Control.Layers.prototype.initialize.call(this, null, null, options);
+/*
+            this._layerControlInputs = [];
+            this._layers = [];
+            this._lastZIndex = 0;
+            this._handlingClick = false;
+*/
+
             this.controlBox = new L.Control.Box(this.options);
 
             this._layers = {};
