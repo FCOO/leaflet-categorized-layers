@@ -407,6 +407,13 @@
         }
     });
 
+    /******************************************
+    Initialize checkbox and radio-input
+    *******************************************/
+    $(function() {
+        $('.leaflet-control-layers-list input:radio, .leaflet-control-layers-list input:checkbox').each ( function () { $(this).createRadioCheckbox(); });
+    });
+
 }(jQuery, L, this, document));
 
 

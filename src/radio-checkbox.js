@@ -3,7 +3,7 @@ RADIOCHECKBOX.JS
 Methods to create and modify input elements e.q. <input type="checkbox">
 *****************************************************************************/
 
-( function($, L, window/*, document, undefined*/){ 
+( function($, L, window/*, document, undefined*/){
 //******************************************
   "use strict";
 
@@ -21,7 +21,7 @@ Methods to create and modify input elements e.q. <input type="checkbox">
         this.allowZeroSelected = allowZeroSelected;
         this.selectedIndex = -1;
         this.children = [];
-    
+
         /******************************************
         addChild
         Adds a input:radio to the group
@@ -31,47 +31,47 @@ Methods to create and modify input elements e.q. <input type="checkbox">
             //If the radio-button isn't created => create it!
             if (!$inputRadio.parent().hasClass('input-radio') )
                 $inputRadio.createRadioCheckbox();
-        
+
             //If allowZeroSelected=true the radiobox is changed to a checkbox looking like a radio-button
             if (this.allowZeroSelected)
-                $inputRadio.attr('type' ,'checkbox');      
-        
+                $inputRadio.attr('type' ,'checkbox');
+
             var $this = this;
             $inputRadio.data('radio-group-index', this.children.length);
-        
+
             $inputRadio.change( function(){ $this._onChange( $(this).data('radio-group-index') ); });
             this.children.push( $inputRadio );
         };
-    
-        this._onChange = function _onChange( index ){ 
+
+        this._onChange = function _onChange( index ){
             if (this.allowZeroSelected && (this.selectedIndex > -1)){
               //Unselect the current selected radio-button
                 this.onChange( this.children[this.selectedIndex].attr('id'), false, this);
                 this.children[this.selectedIndex].prop('checked', false);
             }
-    
+
             //If it was a unselection of a radio-button => no selected
             this.selectedIndex = this.selectedIndex == index ? -1 : index;
-    
+
             if (this.selectedIndex > -1)
                 this.onChange( this.children[this.selectedIndex].attr('id'), true, this);
         };
     }
-    
+
     window.RadioGroup = RadioGroup;
-    
+
     /******************************************
     Create checkbox and radio-input
-    <div class="input-radio|input-checkbox">    
+    <div class="input-radio|input-checkbox">
         <input type="radio|checkbox" value="None" id="..." name=".."/>
         <label for="slideTwo"></label>
     </div>
     *******************************************/
     var nextCheckboxId = 0;
-    $.fn.createRadioCheckbox = function( forceType ) {    
+    $.fn.createRadioCheckbox = function( forceType ) {
         //className = the class for the div-element around
         var className = '';
-        
+
         if (forceType) {
             className = forceType;
             if (forceType == 'input-radio') {
@@ -82,7 +82,7 @@ Methods to create and modify input elements e.q. <input type="checkbox">
             className = 'input-checkbox';
           } else {
             if (this.hasClass('display-as-radio'))
-                className = 'input-radio';                  
+                className = 'input-radio';
             else
                 className = (this.attr('type') == 'checkbox') ? 'input-checkbox' : 'input-radio';
           }
@@ -90,8 +90,8 @@ Methods to create and modify input elements e.q. <input type="checkbox">
 
         //Check if the input-element already is 'created'
         if (this.parent().hasClass( className ))
-            return this;  
-        
+            return this;
+
         var id = this.attr('id');
         if (!id){
             //Create default id
@@ -100,16 +100,16 @@ Methods to create and modify input elements e.q. <input type="checkbox">
         }
         //Add a <div> with class=className around the input-element
         this.before('<div></div>').prev().addClass(className).append(this);
-    
+
         //Adding <label> after
         $('<label></label>').insertAfter(this).attr('for', id);
-    
+
         return this;
     };
     //*******************************************
-    
-    
-    
+
+
+
     /************************************************************************************
     checkboxGroup
     The input acts as checkbox for a group of checkbokes. The state of the input is updated
@@ -118,7 +118,7 @@ Methods to create and modify input elements e.q. <input type="checkbox">
     $.fn.checkboxGroup = function() {
         this.data('is-checkbox-group', true );
         this.data('checkbox-children', []);
-    
+
         /************************************************************************
         When click on group input the checked-state of all children chamges
         ************************************************************************/
@@ -128,14 +128,14 @@ Methods to create and modify input elements e.q. <input type="checkbox">
             $.each( $(this).data('checkbox-children'), function( indexInArray, $child ){
                 $child
                     .prop('checked', !uncheckAllChild)
-                    .trigger('click'); 
+                    .trigger('click');
             });
         });
-    
+
         /************************************************************************
         trigger('clickchild') is called when any of the child input are clicked
         ************************************************************************/
-        this.on('clickchild', function () { 
+        this.on('clickchild', function () {
             //Count the number of checked and unchecked children
             var childChecked = 0;
             var childUnchecked = 0;
@@ -151,7 +151,7 @@ Methods to create and modify input elements e.q. <input type="checkbox">
         });
         return this;
     }; //$.fn.checkboxGroup = function() {..
-    
+
     /**************************************
     checkboxGroupAddChild
     **************************************/
@@ -163,53 +163,47 @@ Methods to create and modify input elements e.q. <input type="checkbox">
         this.data('checkbox-children', list);
         //Call the trigger for 'childclick' for the group-input
         child.click( function () { $this.trigger('clickchild'); });
-        this.trigger('clickchild'); 
+        this.trigger('clickchild');
     };
-    
+
     /**************************************
     checkboxGroupRemoveChild
     Remove child from the checkboxGroup
     **************************************/
-    $.fn.checkboxGroupRemoveChild = function( child ){ 
+    $.fn.checkboxGroupRemoveChild = function( child ){
         child.data('checkbox-parent', this);
         var list = this.data('checkbox-children');
         for (var i=0; i<list.length; i++ )
-            if (list[i].get(0) == child.get(0)){ 
+            if (list[i].get(0) == child.get(0)){
               list.splice(i, 1);
                 break;
             }
         this.data('checkbox-children', list);
-        this.trigger('clickchild'); 
+        this.trigger('clickchild');
     };
-    
+
     /**************************************
     removeFromCheckboxGroup
     Remove this from the checkboxGroup
     **************************************/
     $.fn.removeFromCheckboxGroup = function(){
-        var checkboxGroup = this.data('checkbox-parent'); 
+        var checkboxGroup = this.data('checkbox-parent');
         if (checkboxGroup)
             checkboxGroup.checkboxGroupRemoveChild( this );
     };
-    
-    
+
+
     /**************************************
     checkbox_updateCheckboxGroup
     Update the checkboxGroup of this
     **************************************/
     $.fn.checkbox_updateCheckboxGroup = function(){
-        var checkboxGroup = this.data('checkbox-parent'); 
+        var checkboxGroup = this.data('checkbox-parent');
         if (checkboxGroup)
-            checkboxGroup.trigger('clickchild'); 
+            checkboxGroup.trigger('clickchild');
     };
-    
-    
-    /******************************************
-    Initialize checkbox and radio-input
-    *******************************************/
-    $(function() {    
-        $('input:radio, input:checkbox').each ( function () { $(this).createRadioCheckbox(); });
-    });
+
+
 
 //*******************************************
 })(jQuery, L, this, document);
