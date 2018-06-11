@@ -10,7 +10,7 @@
 
     L.Control.CategorizedLayers = L.Control.Layers.extend({
         options: {
-            VERSION             : "2.0.5",
+            VERSION             : "2.0.6",
             minimized           : false,
             groupsCollapsed     : true,
             collapseActiveGroups: false,
@@ -405,13 +405,6 @@
             this._overlaysList = L.DomUtil.create('div', className + '-overlays', form);
             container.appendChild(form);
         }
-    });
-
-    /******************************************
-    Initialize checkbox and radio-input
-    *******************************************/
-    $(function() {
-        $('.leaflet-control-layers-list input:radio, .leaflet-control-layers-list input:checkbox').each ( function () { $(this).createRadioCheckbox(); });
     });
 
 }(jQuery, L, this, document));
